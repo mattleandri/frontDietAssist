@@ -1,0 +1,58 @@
+https://reactrouter.com/en/main/start/tutorial#client-side-routing
+
+npm install react-router-dom
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+1- Con createBrowserRouter creo las rutas. Le envio un Array con objetos asi:
+
+const router = reateBrowserRouter ([{
+    path: "/path",
+    element: <ElementName />,
+    errorElement: <ElementErrorName>        <= Se redigira alli cuando alla errores
+},..
+])
+
+
+2 - Agrego a mi Main.jsx <RouterProvider router={router} />
+ <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+
+3- Creo un file src/routes/<Ruta1> Donde cada Ruta seria cada 
+Pagina (Elemento a renderizar)
+
+4 - Para asignar mis Elementos que quiero routear debo agragarlo a una prop children[]
+    en el elemento Padre
+
+    Ej: 
+    [{
+    path: "/path",
+    element: <Padre />,
+    errorElement: <ElementErrorName>        <= Se redigira alli cuando alla errores
+    children:[
+         path: "/pathHijo",
+        element: <Hijo />,
+        errorElement: <ElementErrorName>        <= Se redigira alli cuando alla errores
+    ]
+},..
+]
+
+Ademas debo coloar un elemento llamado <Outlet> (a importar de la libreria claro)
+en la posicion del Elemento Padre en donde quiero que se renderice mi elemento Hijo
+
+
+Tambien. Para que funcione correctamente debo cambiar mis elementos <a> por <link>
+ <Link to={`path`}>Your Name</Link>
+
+_________________________
+
+UseLoaderData       <- Viene a "reemplazar el useSate" ?
+    Sirve para especificar que datos debemos cargar (fetch) antes de renderizar
+    nuestra nueva ruta (componente). 
+
+    Pasos:
+        1- En la ruta donde quiero cargar los datos creamos y exportamos una nueva funcion que haga el fetch
+        2- En el router (createBrowserRouter); dentro de la referencia a mi ruta agrego:
+            loader:nombreFuncion
+        3-Utilizo el hook en mi ruta donde debo cargar los datos :  const { data } = useLoaderData();
+        

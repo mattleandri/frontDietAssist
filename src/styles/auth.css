@@ -1,0 +1,103 @@
+
+
+
+.fullPage{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.sigInContainer{
+    display:flex;
+    flex-direction: column;
+    height: 400px;
+    width: 500px;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    background-color: #759191;
+    padding: 30px;
+   
+    
+}
+
+.container{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userInput ,
+.passInput,
+.loginBtn{
+
+    height: 100%;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 13px;
+    padding-left: 15px;
+    outline: none;
+   
+
+}
+
+.userDiv ,
+.passDiv ,
+.loginDiv{
+    height: 40px;
+    position: relative;
+}
+
+.userDiv{
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.passDiv{
+    margin-bottom: 15px;
+}
+
+
+/* div{
+    border: 3px solid red;
+} */
+
+.loginBtn:hover{
+
+    background-color:#D4E3E1
+    ;
+
+}
+
+.optionsDiv{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+
+}
+
+.optionRecordar{
+    font-size: 15px;
+ 
+}
+
+.check{
+    height: 17px;
+    width: 17px;
+    margin-left: 5px;
+}
+.loginDiv{
+    margin-bottom: 70px;
+}
+
+.optionRegistro{
+    font-size: 15px;
+}
+
+.bx{
+    position: absolute;
+    left: 90%;
+}
