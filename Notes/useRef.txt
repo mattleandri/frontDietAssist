@@ -1,0 +1,14 @@
+Me sirve para almacenar un valor de forma local en el componente
+Valor que   NO se modificara al rerenderizar el componente
+            NO generara un rerenderizado
+
+const miRef = useRef(valor)
+
+miRef.current       <-- para acceder a dicho valor
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+Interesante... puedo guardar mas de un variable en un estado
+
+ej const [sate,setSate] = useState({
+        valo1:10,
+        valor2:20,
+        valor3:30
+})
+
+
+! pero al yo hacer luego useSate(valor 1 + 1)
+literalmente estarr guardando solo un 11
+
+Para mantener los otros estados puedo hacer 
+setState (...state,
+            valor1:valor1+1)
+y listo
+
+Ademas para mas comodidad podria desestructurar 
+
+const {valor1, valor2, valor3} = state
+
+el operador Spread (...) es este contexto retorna una copia del objeto state
+(sus claves:valor) y reemplazaremos valor 1 por valor 1 + 1
+

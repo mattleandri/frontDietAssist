@@ -1,0 +1,17 @@
+Este Hook se utiliza cuando debemos conocer las medidas (ya que no son siemre las mismas)
+de algo (un componente? sea si mismo o otro ) en la panatalla para en base a ello tomar una desicion del posicionamiento 
+( o otro atributo) del componente.
+
+Layout: Estructura de posicionamiento de elementos de nuestra web. Estructura de las "cajas contenedoras" (divs)
+
+
+1- Nuestro componente de Renderiza (recordemos que para react renderizarse no es aun mostrarse en pantalla. Es realizar los
+    calculos necesarios de creacion de componente)
+2- Con este calculo medimos algun atributo del layout que nos interese. Por ejemplo la altura que tendra nuestro componente 
+    (podria variar segun la data fetcheada)
+3- Ahora si tras haberse ejecutado useLayoutEffect se rerenderiza (recalcula) nuestro componente y se muestra en pantalla.
+
+! useEffect se ejecuta de manera asincroana por lo que no generara problemas de rendimiento
+useLayutEffect en cambio de forma sincrona como se describio anteriormente. Los componetnes no seran mostrados en patanllas
+hasta que haya finalizado su ejecucion. Por ello debe usarse solo cuando sea relamente necesario.
+

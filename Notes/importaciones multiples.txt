@@ -1,0 +1,11 @@
+ARCHIVOS DE BARRIL para acomodar las exportaciones
+
+Creo un archivo : index.js en la carpeta con todos los archivos a exportar
+
+    //source/index.js  
+    export * from './nombreArchivo1'
+    export * from './nombreArchivo2'
+
+
+luego simplemente importo (a1,a2) from './source'
+No es necesario poner /index . Es reduntante. Con el nombre de la carpeta es suficiente

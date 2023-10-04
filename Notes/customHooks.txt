@@ -1,0 +1,14 @@
+Podemos crear facilmente customHooks uniendo dos o mas de ellos
+Ejemplo al hacer un fetch usamos un state para la data que cambia al terminar el get
+del useEffect. Toda esta logica la podemos convertir en un customHooks para no tener que estar copiando y pegando todo esto
+
+se le pone .js si no retornara un elemento
+
+    un Hook es un funcion, por ende crear el customHook
+    es tan simple como crear una funcion que incluya la logica y devuelva un objeto
+    (a desestructurar luego) y claro acomodar los parametros que recibira segun sea debido
+
+    
+Puedo crear funciones dentro de mi custom hook que modifiquen el state de alguna forma
+y enviarlas en el return para luego recibirlas en la desesctruracion y llamarlas cuando las necesite
+ej al tocar un boton.

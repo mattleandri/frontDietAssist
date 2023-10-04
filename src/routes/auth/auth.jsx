@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import '../styles/auth.css';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../../styles/auth.css';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
 
 
-async function login (user,pass,navigate){
+
+async function handleLogin (user,pass,login,navigate){
 
     const response = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
@@ -20,7 +23,14 @@ async function login (user,pass,navigate){
 
     if(response.status == 200) {
         localStorage.setItem('accesToken',data.token)
+        await login()
         navigate('/panel')
+        
+    }
+
+    if(response.status == 401 ){
+        //navigate('/auth')
+        alert('Usuario/Contrasenia incorrecta')
     }
 }
 
@@ -28,7 +38,30 @@ export default function Auth() {
 
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
+    
     const navigate = useNavigate()
+    const {login} = useContext(AuthContext)
+
+    const authContext= useContext(AuthContext)
+    console.log(authContext)
+
+    //QUEDA PENDIENTE TEMA REDIRECCIONAMIENTO
+
+
+    //Redireccion en Caso de que ya este el token
+    //Quedan muchas cosas por ver. Ej: Yo quiro lo opuesto a useEffect quiero que primero se verifique el token y luego sino se muestre la pag
+    //2 - De esta forma sera el middleware de cada Ruta (verifyTWT) el que dira si es real y permitira o no el acceso.
+    //Pero sucede lo mismo que antes. Si el token es falso mi componente igualmente se habra renderizado por un momento
+
+   
+    // useEffect(()=>{
+    //     const token=localStorage.getItem('accesToken')
+    //     if(token) {
+    //         navigate('/panel')
+    //     }
+    //     else console.log('no token')
+    // },[]
+    // )
 
 
   return (
@@ -50,7 +83,7 @@ export default function Auth() {
             <button type='checkbox' className='check'></button>
         </div>
         <div className="loginDiv container ">
-            <button onClick={()=>{login(username,password,navigate)}} className='loginBtn' >Iniciar Sesion</button>
+            <button onClick={()=>{handleLogin(username,password,login,navigate)}} className='loginBtn' >Iniciar Sesion</button>
         </div>
         <div className="footer container">
             <span >

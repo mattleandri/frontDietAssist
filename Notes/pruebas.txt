@@ -1,0 +1,11 @@
+Existen dos tipos de Pruebas
+UNITARIAS: Probando pequenios pedazos del codigo (ej un componente)   
+INTEGRACION: Probando todo unido
+
+Deberiamos hacer muchas pruebas unitarias y luego de INTEGRACION
+
+Nos basamos en AAA
+Arrange -> Preparamos el estado inicial
+Acutal -> Aplicamos acciones o estimulos (simular clikcs , llamar metodos...)
+Afirmar -> Observar los resultados para ver si son esperados
+

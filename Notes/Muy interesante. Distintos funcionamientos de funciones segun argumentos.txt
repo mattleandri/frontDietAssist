@@ -1,0 +1,42 @@
+Me ha generado intriga como es que al enviarle como argumento 
+( oldValue ) => oldValue + num 
+
+al setValue, este sabia que oldValue era una referencia al valor del estado anterior.
+
+
+He consultado a ChatGPT3 y me ha dicho algo interesante y que funcionaria,
+haciendo una idea de como podria suceder internamente esto en React.
+Argumentando algo tan simple como que si el argumento que recibe setState es una
+funcion, se llamara a esa funcion con el valor del actual del State como su propio argumento
+
+
+RESPUESTA DE CHATGPT3:
+
+// Imagina una implementación simplificada de useState
+function useState(initialValue) {
+  let state = initialValue; // Almacena el estado actual
+
+  function setState(newState) {
+    // `setState` recibe una nueva función o un nuevo valor
+    if (typeof newState === 'function') {
+      // Si se proporciona una función, ejecútala y pasa el valor anterior del estado como argumento
+      state = newState(state);
+    } else {
+      // Si se proporciona un valor directo, actualiza el estado con ese valor
+      state = newState;
+    }
+
+    // Aquí podrías notificar a los componentes que el estado ha cambiado, por ejemplo, volviendo a renderizar
+    // Pero esta parte se omite en esta implementación simplificada
+  }
+
+  // Retorna el estado actual y la función para actualizarlo
+  return [state, setState];
+}
+
+
+
+
+
+
+

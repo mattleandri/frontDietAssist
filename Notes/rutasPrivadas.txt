@@ -1,0 +1,13 @@
+El concepto de privatizacion de Rutas por Fernando Herrera en la Seccion 15 funciona de la siguiente manera:
+
+1) Creo un contexto que guarde si es que el usuario esta logeado, y en caso de que asi sea guarda su name e id en el payload
+    Este contexto a su vez incluye las funciones para acceder al dispath y modificar el estado .
+    Esta interesante. Se fuciono useReducer con useContext siendo el estado devuelto por useReducer el valor del Provider
+    Ademas crea un componente llamado <contextoName>Provider que toma como prop un children y retorna el verdadero
+    .Provider envolviendo a este
+    De modo que en ese componente maneja toda la logia. La creacion del Reduce, etc...
+
+2) Creo un componente llamado por ej PrivateRoutes que tomara un children y accedera al contexto para ver si esta logeado
+    en caso de que si con renderizado cond devolvera el children (claro luego envolveremos este comp en el manejador de rutas)
+    y en caso de que no, podriamos retonar el componente Navigate con referencia por ejemplo al login...
+

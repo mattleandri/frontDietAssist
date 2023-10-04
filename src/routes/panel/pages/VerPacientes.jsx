@@ -11,7 +11,7 @@ export async function loader (){
 }
 
 
-export default function VerPacientes() {
+export function VerPacientes() {
 
     const patients = useLoaderData();
     console.log(patients)

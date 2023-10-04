@@ -1,6 +1,0 @@
-USE EFFECT
-Se ejecuta DESPUES de renderizar el componente.
-No genera automaticamente un re-renderizado pero podemos hacerlo modificando un State
-
-USE LOADER DATA 
-No renderiza el componente hasta que se haya cargado la Data de la API

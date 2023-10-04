@@ -1,0 +1,71 @@
+https://es.react.dev/learn/passing-data-deeply-with-context
+
+
+CONTEXTO 
+    El contexto permite que el componente padre provea datos al árbol entero debajo de él
+
+pasos:
+    1. Crear un contexto (puedes llamarlo LevelContext, ya que es para el level de los encabezados)
+    2. Usar ese contexto desde el componente que necesita los datos (Heading usará LevelContext)
+    3. Proveer ese contexto desde el componente que especifica los datos (Section proveerá LevelContext)
+
+
+1 CREANDO EL CONTEXTO
+
+
+    //levelContext.js
+    import { createContext } from 'react';
+
+    export const LevelContext = createContext(1);   //1 sera el valor predeterminado
+
+
+
+2 USANDO EL CONTEXTO    (useContext)
+    En el componente que consumira el contexto (quien necesita la prop)
+
+    Importo mi f contexto.js y useContext de React
+
+        const level = useContext(LevelContext);
+
+    useContext devuelve el valor del contexto para el componente que lo llama. 
+    Está determinado como el value pasado al SomeContext.Provider más cercano arriba del componente que llama en el árbol. 
+    Si no existe tal proveedor, entonces el valor devuelto será el defaultValue que le pasaste a createContext para ese contexto.
+     El valor devuelto siempre está actualizado. React rerenderiza automáticamente los componentes que leen algún contexto si este cambia.
+
+
+3 PROVEER EL CONTEXTO (Provider)
+
+    En el componente padre debo envolver al {children} mediante <miContexto>.Provider value=<propName>
+
+        <miContexto.Provider>
+            <childrenComp>
+        </miContexto.Provider>
+
+
+    Esto le dice a React: «si cualquier componente adentro de este ComponentePadre pregunta por <miContexto>, 
+    envíales este <propName>». El componente usará el valor del <miContexto>.Provider más cercano en el árbol de la UI encima de él.
+
+
+
+
+
+
+! ACTUALIZAR EL VALOR DE UN CONTEXT
+    Si queremos cambiar el valor del contexto debemos unirlo al estado siendo este el value a proveer en el context.Provider
+
+    function MyPage() {
+
+        const [theme, setTheme] = useState('dark');                                         !
+
+        return (
+            <ThemeContext.Provider value={theme}>                                           !
+            <Form />
+            <Button onClick={() => {
+                setTheme('light');
+            }}>
+                Cambiar a tema claro
+            </Button>
+            </ThemeContext.Provider>
+        );
+    }
+

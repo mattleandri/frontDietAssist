@@ -1,0 +1,59 @@
+ Suele crearse una carpeta Test con los archivos con el nombre igual al archivo a testar
+    ej: <miArchivoAtestear>.test.js
+
+!Para usarlo con ESM https://jestjs.io/docs/ecmascript-modules
+    1. Creo jest.config.json con: "transform": {}
+    2. Debo ejecutar Node en un mondo experimental que permite import y exports ESM.
+        Para ello modifique el script test a "test": "NODE_OPTIONS='--experimental-vm-modules' jest --watchAll"
+
+SYNTAX
+    describe('Nombre del Conjunto',()=>{
+
+        test('xFuncion deberia retornar N'()=>{
+ 
+            expect(<a testear>).<operadorDeComparacion>(<resultado esperado>)
+            expect...
+
+        });
+    });
+
+
+OPERADORES  https://jestjs.io/docs/expect
+
+toBe        Comparar valores. Al comparar primitivos se compara su valor
+toEqual     Compara objetos. No debe usarse toBe ya que al comparar objetos se compara su ubicacion en memoria y no su valor 
+toStringEqual
+toBeFalsy   null/undefined/false
+
+
+
+EVALUAR FUNCIONES ASYNCRONAS        -Puede usarse tanto con .then como con Async/Await. https://jestjs.io/docs/asynchronous ej: 
+
+    describe('Nombre del Conjunto', async ()=>{
+
+        test('the data is peanut butter', async () => {
+        await expect(fetchData()).resolves.toBe('peanut butter');
+        });
+
+        test('the fetch fails with an error', async () => {
+        await expect(fetchData()).rejects.toMatch('error');
+        });
+    });
+
+
+    tambien podriamos trabajarlo sin resolve o reject pero lo veo mejor asi. Podemos simplemente hacer data = await fetchData y luego comparar la data o tomar el e en un catch y compararlo
+
+    ! Nota:   expect.assertions(n); se usa para indicar que queremos que se cumplan los n exprect que tenemos en ese test
+
+
+
+
+
+
+
+
+REACT TESTING LIBRARY https://testing-library.com/docs/react-testing-library/intro/
+
+    Nos permite testear los eventos de DOM. La utilizaremos en conjunto con Jest
+    
+    npm install --save-dev @testing-library/react

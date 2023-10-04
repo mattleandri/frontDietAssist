@@ -1,0 +1,57 @@
+REDUCER funcion
+    Es una funcion normal. Pura (
+                                    todo debe resolverse de manera interna, sin efectos secundarios
+                                    no debe tener tareas asincronas
+                                    no debe llamar el local o sessionStorage
+                                    no debe requerir mas que una 'accion'?)
+    Debe retornar siempre un nuevo estado
+    Usualmente recibe dos argumentos (estadoInicial y la accion a realizar)
+
+    Las funciones Reducer nos permiten agrupar toda la logica
+    de las acciones que deberian ocurrir segun lo que el usuario haga.
+    Son muy utiles cuando hay muchos eventos que pueden realizar un cambio 
+    de estado.
+
+    La Funcion Reducer toma la accion (cual fue el evento) y el estado inicial (actual)
+    segun cual haya sido la accion ejecutara una logica u otra
+    que podemos seleccionar mediante un switch.
+
+    No modifica el estado directamente. Sino que devuleve el valor procesado a asignar al estado
+    
+    
+
+    function yourReducer(state = initialState, action = {}) {
+        // logica de calculo del nuevo state
+        // ! dentro de esta logica NO debe mutarse el state (cuidado con array o objetos)
+        // ! debe crearse una copia a manipular 
+
+        return state
+    }
+
+    //notese que se le asigno por defecto initialState y un objeto vacio a action.
+
+
+    ACTION es un objeto que almacena:{
+        type: //La accion a realizar segun el eveto que lo llame
+        payload: //toda la data necesario
+
+    }
+
+
+USEREDUCER
+    Entendiendo el concepto de la funcion Reducer pasamos a ver el hook useReducer
+    
+      const [state, dispatch] = useReducer(reducer, initialArg, init?)
+
+    . init es una funcion que se ejecuta la primera vez y devolvera un estado diferente a initialState si fuera necesario. Util para si por ej
+        el estado inicial fuera el localStorage. De modo que creare un f que retorne el mismo. Si no simplemente se asignara initialState
+    . la funcion retornada dispath nos permite ejecutar nuestra funcion reducer, asignando el nuevo estado devuelto por esta y solicitando
+        un re-renderizado del componente.
+        solo se le debe enviar el tipo de action como argumento:
+
+        function handleClick() {
+        dispatch({ type: 'incremented_age' });
+        // ...
+
+    
+

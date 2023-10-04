@@ -1,0 +1,52 @@
+MEMO
+    https://react.dev/reference/react/memo
+    const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
+
+    Nos permite guardar el calculo (renderizado) de un componente en memoria (cache interna de react)
+
+    Con ello nos ahorramos tener que rerenderizarlo cuando no sea necesario y acceder a la data de Cache.
+
+    Esto es util para por ejemplo si queremos evitar que al ocurrir un cambio en el componente padre se rerenderice tambien
+    alguno de sus componentes hijos. 
+    Se usa solo si realmente el renderizado de este componente hijo requiere de un gran rendimiento (y por lo tanto tiempo)
+
+    El componente hijo no se rerenderizar (recalculara) A MENOS QUE haya cambiado alguna de sus props
+
+    Aplicacion interesante: Cambio de Temas (claro/oscuro)
+
+
+
+
+
+USEMEMO
+    https://es.react.dev/reference/react/useMemo
+    const cachedValue = useMemo(calculateValue, dependencies)
+
+    USEMEMO me permite guardar los calculos de una funcion en cache.
+    De esta forma esta funcion no se re-ejecutara cada vez que se renderice el componente
+    si no se han modificado las dependencias
+    
+
+
+
+
+USECALLBACK
+    https://es.react.dev/reference/react/useCallback
+    const cachedFn = useCallback(fn, dependencies)
+
+    USE CALLBACK es un Hook  que nos permite almacenar la DEFINICION de una función entre renderizados subsecuentes.
+
+
+DIFERENCIAS entre useMemo y useCallback
+    useMemo almacena el resultado de tu función. 
+    Cuando realmente sea necesario (si cambia la dependencia), React llamará a la función durante el renderizado para calcular su resultado.
+    useCallback almacena la función en sí.
+    A diferencia de useMemo, no llama a la función recibida. En su lugar, almacena la función proporcionada. 
+
+
+
+IMPORTANTE 
+    Si uno de los props de mi compoente es una funcion enviada desde el padre y quiero usar memo 
+    en mi componente hijo => debo guardar tambien la referencia de la funcion mediante useCallback
+    ya que sino al renderizarse nuevamente el componente padre, se creara nuevamente la funcion (se asignara en otra posicion de memoria)
+    y por ello el hijo considerara que ha recibido un prop diferente. De modo que se re-renderizara

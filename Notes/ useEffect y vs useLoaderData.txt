@@ -1,0 +1,18 @@
+USE EFFECT
+    Se ejecuta DESPUES de renderizar el componente.
+    No genera automaticamente un re-renderizado pero podemos hacerlo modificando un State
+
+USE LOADER DATA 
+    No renderiza el componente hasta que se haya cargado la Data de la API
+
+
+USE EFFECT limpieza
+
+    Puedo indicar una accion que el useEffect debe realizar cuando el componente 
+    que lo contiene deje de existir.
+    Esto se llama limpieza y se hace agregando un return al useEffect con la logica deseada de limpieza
+
+    Muy util para por ej. Si con el comp se crea una AddEventListener, debo eliminarlo con el return
+    para que se borre al dejar de existir el componente. Sino el eventListener seguira funcionado
+    y de hecho cada vez que yo cree el componente habra una fuga de memoria donde se crearan mas y mas.
+    

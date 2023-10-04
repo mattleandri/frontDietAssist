@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function CrearPlan() {
+export function CrearPlan() {
   return (
     <div>
       <p>crearPlan :D</p>

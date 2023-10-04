@@ -1,8 +1,31 @@
+import { useEffect, useRef } from "react"
 import { Link, Outlet, useLocation } from "react-router-dom"
+import '../../styles/panel.css';
 
-function Root() {
+export function Panel() {
 
+    useEffect(()=> async function (){
+
+        const token =  localStorage.getItem('accesToken')
+
+        const res =  await fetch('http://localhost:3000/Panel/getPanel',{
+            headers:{xtoken:token}
+        })
+
+        //const data = await res.json()
+        console.log(res.status)
+
+
+    },[])
     const location=useLocation()
+    
+    const inputRef =useRef(null)
+    console.log(inputRef.current)
+
+    const focusInput = ()=>{
+        inputRef.curent.focus()
+    }
+
     const currentPath = location.pathname
     // TODO: Error de Disenio . Todo el boton (div) deveria ser clicleable. No solo el texto (<a> => <Link> )
 
@@ -31,6 +54,9 @@ function Root() {
         </div>
         <div className="main-container">
             <h2>TEXTO EJEMPLO</h2>
+            <input className="a" ref={inputRef} ></input>
+            <button style={{height:20,width:20}} onClick={()=>focusInput}></button>
+            {console.log(inputRef)}
             <Outlet/>
         </div>
     </div>
@@ -38,4 +64,4 @@ function Root() {
   )
 }
 
-export default Root
+ 

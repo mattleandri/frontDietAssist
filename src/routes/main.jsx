@@ -1,22 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {createBrowserRouter,RouterProvider} from "react-router-dom"
+import AuthProvider from './auth/context/AuthProvider'
+
 //Pages and Loaders
-import Root from './Root'
 import ErrorPage from './ErrorPage'
-import VerPacientes, { loader as patientsLoader } from './routes/verPacientes'
-import CrearAlimento from './routes/crearAlimento'
-import CrearPlan from './routes/crearPlan'
-import Auth from './components/auth'
+import {VerPacientes, CrearAlimento, CrearPlan , Panel , loader as patientsLoader}  from './panel'
+import { PublicRouter , PrivateRouter } from './router'
+import Auth from './auth/auth.jsx'
+
 
 const router=createBrowserRouter([
   {
     path:'/auth',
-    element:<Auth/>
+    element:  
+      <PublicRouter>
+        <Auth/>
+      </PublicRouter>
+        
+
   },
   {
     path:"/panel",
-    element: <Root/>,
+    element: 
+      <PrivateRouter>
+        <Panel/>
+      </PrivateRouter>
+      ,
     errorElement: <ErrorPage/>,
     children:[
       {
@@ -33,11 +43,17 @@ const router=createBrowserRouter([
         element: <CrearPlan/>
       },
     ]
+  },
+  {
+    path:'/*',
+    element:<h1>Page not found ...</h1>
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <AuthProvider> 
+      <RouterProvider router={router}/>
+    </AuthProvider> 
   </React.StrictMode>,
 )
