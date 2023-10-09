@@ -4,12 +4,12 @@ import {createBrowserRouter,RouterProvider} from "react-router-dom"
 import AuthProvider from './auth/context/AuthProvider'
 
 //Pages and Loaders
+import {CrearPlan , CrearAlimento , VerPacientes , loader as patientsLoader} from '../pages'
 import ErrorPage from './ErrorPage'
-import {VerPacientes, CrearAlimento, CrearPlan , Panel , loader as patientsLoader}  from './panel'
+import {Panel}   from './panel'
 import { PublicRouter , PrivateRouter } from './router'
-import Auth from './auth/auth.jsx'
-
-
+import {Auth} from './auth/'
+ 
 const router=createBrowserRouter([
   {
     path:'/auth',
@@ -17,11 +17,9 @@ const router=createBrowserRouter([
       <PublicRouter>
         <Auth/>
       </PublicRouter>
-        
-
   },
   {
-    path:"/panel",
+    path:'/panel',
     element: 
       <PrivateRouter>
         <Panel/>

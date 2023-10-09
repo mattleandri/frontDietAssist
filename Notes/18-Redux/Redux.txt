@@ -1,0 +1,202 @@
+(vale la pena aprender de la Doc Oficial, esta muy buena)
+
+REDUX
+    Contenedor predecible del estado de nuestra aplicacion
+
+    Redux crea un "STORE" que es donde estaran toda la informacion
+    (states) que consumiran mis componentes
+
+    Logica de Redux.
+
+    Para un proceso sincrono
+        1- La vista llama una accion
+        2- El Distpacher lo recibe y acude al Reducer correcto
+        3- Retorna el nuevo state
+
+        El Distpacher es la entrada al STORE donde se encuentran
+        todos nuestros Reducers y States
+
+    Para un proceso asincrono (por ej un peticion HTTP)
+        ! Se agrega un Middleware en el Dispatcher 
+
+
+
+
+    Repaso:
+
+    Redux apps use plain JS objects, arrays, and primitives as the state values
+    The root state value should be a plain JS object
+    The state should contain the smallest amount of data needed to make the app work
+    Classes, Promises, functions, and other non-plain values should not go in the Redux state
+    Reducers must not create random values like Math.random() or Date.now()
+    It's okay to have other state values that are not in the Redux store (like local component state) side-by side with Redux
+    Actions are plain objects with a type field that describe what happened
+    The type field should be a readable string, and is usually written as 'feature/eventName'
+    Actions may contain other values, which are typically stored in the action.payload field
+    Actions should have the smallest amount of data needed to describe what happened
+    Reducers are functions that look like (state, action) => newState
+    Reducers must always follow special rules:
+    Only calculate the new state based on the state and action arguments
+    Never mutate the existing state - always return a copy
+    No "side effects" like AJAX calls or async logic
+    Reducers should be split up to make them easier to read
+    Reducers are usually split based on top-level state keys or "slices" of state
+    Reducers are usually written in "slice" files, organized into "feature" folders
+    Reducers can be combined together with the Redux combineReducers function
+    The key names given to combineReducers define the top-level state object keys
+
+    _______________
+
+    Una pequenia idea del core de Redux... MUY BUENO:
+
+    function createStore(reducer, preloadedState) {
+        let state = preloadedState
+        const listeners = []
+
+        function getState() {
+            return state
+        }
+
+        function subscribe(listener) {
+            listeners.push(listener)
+            return function unsubscribe() {
+            const index = listeners.indexOf(listener)
+            listeners.splice(index, 1)
+            }
+        }
+
+        function dispatch(action) {
+            state = reducer(state, action)
+            listeners.forEach(listener => listener())
+        }
+
+        dispatch({ type: '@@redux/INIT' })
+
+        return { dispatch, subscribe, getState }
+        }
+
+
+
+
+    https://redux.js.org/tutorials/fundamentals/part-4-store#writing-custom-middleware
+    -Redux apps always have a single store
+    Stores are created with the Redux createStore API
+    Every store has a single root reducer function
+    -Stores have three main methods
+    getState returns the current state
+    dispatch sends an action to the reducer to update the state
+    subscribe takes a listener callback that runs each time an action is dispatched
+    -Store enhancers let us customize the store when it's created
+    Enhancers wrap the store and can override its methods
+    createStore accepts one enhancer as an argument
+    Multiple enhancers can be merged together using the compose API
+    -Middleware are the main way to customize the store
+    Middleware are added using the applyMiddleware enhancer
+    Middleware are written as three nested functions inside each other
+    Middleware run each time an action is dispatched
+    Middleware can have side effects inside
+    -The Redux DevTools let you see what's changed in your app over time
+    The DevTools Extension can be installed in your browser
+    The store needs the DevTools enhancer added, using composeWithDevTools
+    The DevTools show dispatched actions and changes in state over time
+
+
+
+
+    .. No termino de entender como funciona la creacion del middleware personalizado:
+        // Middleware written as ES5 functions
+
+        // Outer function:
+        function exampleMiddleware(storeAPI) {
+        return function wrapDispatch(next) {
+            return function handleAction(action) {
+            // Do anything here: pass the action onwards with next(action),
+            // or restart the pipeline with storeAPI.dispatch(action)
+            // Can also use storeAPI.getState() here
+
+            return next(action)
+            }
+        }
+        }
+
+        Que esta pasando aqui realmente?...
+
+        //Escrito en ES6 ??... wtf
+        const anotherExampleMiddleware = storeAPI => next => action => {
+        // Do something in here, when each action is dispatched
+
+        return next(action)
+        }
+
+
+
+
+REDUX + REACT   
+    se nos ofrece la libreria react-redux que contiene hooks para
+    trabajar con redux
+
+    . useSelector : Es un hook que nos permite acceder a los datos del store
+        const data = useSelector(fn)
+
+        la data pasaria a funcionar como un estado ya que useSelector
+         "suscribe" automaticamente que al haber un cambio (llamando un distpach) 
+         en el store se re-renderizara nuestro componente
+
+        fn es una funcion de 'filtro' donde especificamos cual es la data a obtener del store
+        ej: const fn = (state)=>state.slice1
+
+    .useDistpach : Nos retorna la fn distpach para que podamos utilizarla
+        const dispatch = useDispatch()
+
+
+   !<Provider> (componente)
+        Debemos envolver los componentes en este componente para
+        que puedan acceder al store
+
+        <Provider store = {store}>
+            <App/>
+        </Provider>
+
+        store es la varibale importada en donde ha sido creado el store
+
+    ! shallowEqual : Es una funcion de comparacion que nos permite evitar que se re-renderize
+    (debido a la suscripcion generada por useSelector) un componente que toma XPROP de un array
+    o un objeto y este (el [] o el {}) han sido modificados, sin embargo no se ha modificado 
+    la XPROP relevante para el componente. Se utiliza enviandola como segundo arg a useSelector
+
+    useSelector(filtroFn, shallowEqual)
+
+    
+
+    GUIA DOC DE CONCOIMIENTOS BASES DE REDUX:
+    Part 1: Overview:
+        what Redux is, when/why to use it, and the basic pieces of a Redux app
+    Part 2: Concepts and Data Flow:
+        How Redux uses a "one-way data flow" pattern
+    Part 3: State, Actions, and Reducers:
+        Redux state is made of plain JS data
+        Actions are objects that describe "what happened" events in an app
+        Reducers take current state and an action, and calculate a new state
+        Reducers must follow rules like "immutable updates" and "no side effects"
+    Part 4: Store:
+        The createStore API creates a Redux store with a root reducer function
+        Stores can be customized using "enhancers" and "middleware"
+        The Redux DevTools extension lets you see how your state changes over time
+    Part 5: UI and React:
+        Redux is separate from any UI, but frequently used with React
+        React-Redux provides APIs to let React components talk to Redux stores
+        useSelector reads values from Redux state and subscribes to updates
+        useDispatch lets components dispatch actions
+        <Provider> wraps your app and lets components access the store
+    Part 6: Async Logic and Data Fetching:
+        Redux middleware allow writing logic that has side effects
+        Middleware add an extra step to the Redux data flow, enabling async logic
+        Redux "thunk" functions are the standard way to write basic async logic
+    Part 7: Standard Redux Patterns:
+        Action creators encapsulate preparing action objects and thunks
+        Memoized selectors optimize calculating transformed data
+        Request status should be tracked with loading state enum values
+        Normalized state makes it easier to look up items by IDs
+
+
+    

@@ -1,0 +1,16 @@
+Thunk en programacion es una parte de codigo que inyecta 
+una subrutina para que se realice previa a otra
+
+
+Para Redux es una patron para escribir una funcion que pueda interactuar con el
+store mediante dispatch y getState
+
+    //creacion de la funcion
+    function thunkFunction (dispatch,getState) {
+        return async function fnInterna(dispatch,getState){
+            //Logica
+            ej: const responde = fetch(..)
+            dispatch(response)
+        }
+    }
+

@@ -1,0 +1,10 @@
+https://redux.js.org/tutorials/quick-start
+
+1. Creo el Store mediante configureStore con el argumento {reducer: {}} y lo exporto    /store/store.js
+2. Proveo a mi componente el contexto :  <Provider store={store}> (lo envuelvo)
+3. Creo los slices /store/<miSlice>/miSlice.js
+    utilizo createSlice() que toma como arg {main (nombre del slice) initialState , reducers} 
+    siendo reducers un objeto:{actionName:fnReducer(state,action)}  // recordemos que en action se encuentra el type (createSlice ya hace el switch)
+    y el payload
+
+    exporto los {reducer1,reducer2} from miSlice.action

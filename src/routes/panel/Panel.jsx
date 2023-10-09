@@ -53,10 +53,6 @@ export function Panel() {
             </div>
         </div>
         <div className="main-container">
-            <h2>TEXTO EJEMPLO</h2>
-            <input className="a" ref={inputRef} ></input>
-            <button style={{height:20,width:20}} onClick={()=>focusInput}></button>
-            {console.log(inputRef)}
             <Outlet/>
         </div>
     </div>

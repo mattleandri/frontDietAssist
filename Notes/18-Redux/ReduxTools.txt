@@ -1,0 +1,71 @@
+
+https://redux.js.org/tutorials/fundamentals/part-8-modern-redux
+
+
+
+    Redux ToolKit provee funciones que simplifican ampliamente el codigo.
+
+    .configureStore     (reemplaza a createStore)
+        funcion que nos facilita ampliamente la funcion de crear el store:
+
+
+        Syntax ex: 
+            import { configureStore } from '@reduxjs/toolkit'
+
+            import todosReducer from './features/todos/todosSlice'
+            import filtersReducer from './features/filters/filtersSlice'
+
+            const store = configureStore({
+            reducer: {
+                // Define a top-level state field named `todos`, handled by `todosReducer`
+                todos: todosReducer,
+                filters: filtersReducer
+            }
+            })
+
+            export default store
+
+        Ademas : automaticamene aniade Middleware para errores comunes como mutacion del estado y chunck middleware
+
+    
+    .createSlice ({main,initialState,reducers})
+        Nos facilita la creacion del slice mediante un objeto que poseera:
+
+        name: String que sera usado como prefijo de las action Types
+        initialState 
+        reducers: objeto donde escribiremos nuestras funciones reducer: fnReducer(state,action) {//logic}
+        
+        Ademas: 
+    
+            -Genera los Action Creators automaticamente (https://read.reduxbook.com/markdown/part1/04-action-creators)
+            "createSlice generated the action type string for us, by combining the slice's name field with the todoToggled 
+            name of the reducer function we wrote. By default, the action creator accepts one argument, which it puts into
+            the action object as action.payload.
+
+            Inside of the generated reducer function, createSlice will check to see if a dispatched action's action.type 
+            matches one of the names it generated. If so, it will run that case reducer function. This is exactly the same
+            pattern that we wrote ourselves using a switch/case statement, but createSlice does it for us automatically."
+
+            -Nos permite mutar el state. En realidad el State sigue siendo inmutable pero createSlice y createReducer
+            trabajan con un biblioteca IMMER que se encarga de proteger el valor del state y aunque nosotros encribamos 
+            codigo que lo mutaria, en realidad esta biblioteca se encargara de retornar el valor que obtendriamos al hacerlo
+            pero no lo hace. Immer doc: https://immerjs.github.io/immer/
+
+
+    
+    .useSelector()  (hook)
+        useSelector(callbackReturn,compareFn)
+
+        useSelector nos permite consumir el state del Store
+
+        const miEstado = useSelector( (state)=> state.miEstado.value)
+        
+        useSelector automaticamente suscribe la re-renderizacion del componente a un
+        cambio de estado (distpach) 
+
+
+    .useDistpach    (hook)
+        const distpach = useDistpach()
+
+        nos retorna una referencia al distpach del store
+        luego para utilizarlo : distpach (fnReducer)

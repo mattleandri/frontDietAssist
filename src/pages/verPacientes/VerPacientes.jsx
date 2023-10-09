@@ -1,6 +1,6 @@
 //With useLoaderData from 
 import { useLoaderData } from "react-router-dom"
-import { getPatients } from "../api/Pacientes"
+import { getPatients } from "./api"
 
 // Not working actually. See getPatients() for more info
 

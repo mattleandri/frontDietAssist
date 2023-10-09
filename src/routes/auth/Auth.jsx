@@ -34,7 +34,7 @@ async function handleLogin (user,pass,login,navigate){
     }
 }
 
-export default function Auth() {
+export function Auth() {
 
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
@@ -44,24 +44,6 @@ export default function Auth() {
 
     const authContext= useContext(AuthContext)
     console.log(authContext)
-
-    //QUEDA PENDIENTE TEMA REDIRECCIONAMIENTO
-
-
-    //Redireccion en Caso de que ya este el token
-    //Quedan muchas cosas por ver. Ej: Yo quiro lo opuesto a useEffect quiero que primero se verifique el token y luego sino se muestre la pag
-    //2 - De esta forma sera el middleware de cada Ruta (verifyTWT) el que dira si es real y permitira o no el acceso.
-    //Pero sucede lo mismo que antes. Si el token es falso mi componente igualmente se habra renderizado por un momento
-
-   
-    // useEffect(()=>{
-    //     const token=localStorage.getItem('accesToken')
-    //     if(token) {
-    //         navigate('/panel')
-    //     }
-    //     else console.log('no token')
-    // },[]
-    // )
 
 
   return (
