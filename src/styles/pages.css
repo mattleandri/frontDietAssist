@@ -12,7 +12,8 @@
 .flexV{
     display: flex;
     flex-direction: column;
-    flex:1
+    flex:1;
+    padding-left: 20px;
 }
 
 .flexH{
@@ -26,25 +27,41 @@
 .divMacrosObtenidos{
     display: flex;
     justify-content: space-between;
-    width: 300px;
+    width: 350px;
     padding-left: 20px;
-    padding-right: 80px;
+    padding-right: 20px;
+    margin-top: 15px;
 
-    background-color: aquamarine;
-    border: solid aquamarine;
-    border-radius: 20px 
+    background-color:#D8D8D8;
+    border: solid #D8D8D8;
+    border-radius: 10px;
+    gap: 3px;
 
 }
 
+.inputMacro{
+    width: 50px;
+    margin-left: 7px;
+    background-color: #D8D8D8;
+    border: none;
+    font-weight: 600;
+}
+
+
+
+.macroItem{
+    display: flex;
+}
+
+
 .divBuscadorAlimentos{
     margin-top: 15px;
-    margin-left: 30px;
 }
 
 .buscadorAlimentos{
     border: none;
     height: 35px;
-    width: 300px;
+    width: 350px;
 }
 
 
@@ -67,4 +84,24 @@
     background-color: beige;
     height: 50px;
     width: 400px;
+}
+
+
+/* LISTA SELECCIONADOS */
+
+.divItemSeleccionado{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    margin-left: 30px;
+
+}
+
+.trashIcon{
+    position: relative;
+}
+
+.amountInput{
+    width: 60px ;
+    font-size: 15px;
 }

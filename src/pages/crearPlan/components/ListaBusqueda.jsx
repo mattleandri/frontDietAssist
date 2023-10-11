@@ -10,8 +10,7 @@ export default function ListaBusqueda() {
   return (
     <div className="divBusquedaComida">
       {searchFood.map(food=>{
-        return (<ItemBusqueda key={food.id} name={food.name} kcal = {food.kcal} carbs = {food.carbs} protein = {food.protein}
-           fat = {food.fat} id = {food._id}/>)
+        return (<ItemBusqueda key={food._id} food={food}/>)
       })}
     </div>
   )

@@ -16,7 +16,6 @@ export default function BuscadorAlimentos() {
     
     const fetchAlimentos = async () => {
 
-      console.log("fn")
     if(searchValue.trim().length >=2 ) {
       setAlimentos(await getAlimentos(searchValue))
     }

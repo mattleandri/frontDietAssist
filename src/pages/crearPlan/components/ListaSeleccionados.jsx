@@ -1,16 +1,19 @@
 import { useContext } from "react"
 import { PlanContext } from "../context/planContext"
 import ItemBusqueda from "./ItemBusqueda"
+import ItemSeleccionado from "./ItemSeleccionado"
 
-export default function ListaAlimentos() {
+export default function ListaSeleccionados() {
 
   const {plan} = useContext(PlanContext)
   const {selectedFoods} = plan
 
+  console.log(selectedFoods)
+
   return (
     <div className="divListaAlimentos">
      {selectedFoods.map(food =>{
-      return (<h1>{food}</h1>)
+      return (<ItemSeleccionado key={food._id} food={food} />)
      })}
     </div>
   )
