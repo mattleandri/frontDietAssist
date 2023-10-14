@@ -11,6 +11,7 @@ export default function PlanProvider({children}) {
   const [plan,dispatch] = useReducer(planReducer,{
     selectedFoods:[],
     goals:{p:0,c:0,f:0,kcal:0},
+    macros:{p:0,c:0,f:0,kcal:0},
     distribution:[],
     searchFood:[]
   })
@@ -20,16 +21,29 @@ export default function PlanProvider({children}) {
   // TODO: Quitar searchFoos de este Provider 
   useEffect(()=>{
 
-    const foods =  plan.selectedFoods.map(food=>
-     ({
-      id:food._id,
-      amount:food.amount
-    })
-    )
+    const getAndShowMacros = async () =>{
 
-    console.log(foods)
+      const foods =  plan.selectedFoods.map(food=>
+        ({
+         id:food._id,
+         //amount:food.amount,     //API sabra si data es acorde a 100 o 1 segun <type>
+         selectedAmount:food.selectedAmount,
+         c:food.carbs,
+         p:food.protein,
+         f:food.fat,
+         kcal:food.kcal,
+         type:food.type,
+         category:food.category
+   
+       })
+       )
 
-    calculateMacros(foods)
+       setMacros(await calculateMacros(foods))
+
+    }
+
+    getAndShowMacros()
+
   },[plan.selectedFoods])
 
 
@@ -39,6 +53,14 @@ export default function PlanProvider({children}) {
       type:'searchFood',
       payload: foodList
     })
+  }
+
+  const cleanSearch = () =>{
+
+    dispatch({
+      type: 'cleanSearch'
+    })
+
   }
   
   const addFood = (food) =>{
@@ -57,13 +79,28 @@ export default function PlanProvider({children}) {
 
   const setGoals = (goals) =>{
     dispatch({
-      tpye:'setGoals',
+      type:'setGoals',
       payload:goals
     })
   }
 
+  const setMacros = (macros) => {
+    dispatch({
+      type:'setMacros',
+      payload:macros
+    })
+  }
+
+  const changeAmount = (data)=>{
+    //data is: {food.id:amountSelected}
+    dispatch({
+      type:'changeAmount',
+      payload:data
+    })
+  }
+
   return (
-    <PlanContext.Provider value = {{plan,searchFood,addFood,deleteFood}}>
+    <PlanContext.Provider value = {{plan,searchFood,addFood,deleteFood,changeAmount,cleanSearch}}>
       {children}
     </PlanContext.Provider>
   )

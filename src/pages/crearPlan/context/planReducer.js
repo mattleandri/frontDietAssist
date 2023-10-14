@@ -12,10 +12,15 @@ export function planReducer(state,{type,payload}){
 
     switch (type) {
         case 'searchFood':
-            console.log('entro ')
             return {
                 ...state,
                 searchFood : payload
+            }
+
+        case 'cleanSearch':
+            return{
+                ...state,
+                searchFood: []
             }
             
             
@@ -31,13 +36,29 @@ export function planReducer(state,{type,payload}){
         case 'deleteFood':
             return{
                 ...state,
-                selectedFoods: state.selectedFoods.filter( food => food.id != payload)
+                selectedFoods: state.selectedFoods.filter( food => food._id != payload)
             }
 
         case 'setGoals':
             return{
                 ...state,
-                goals :{...goals, p:payload.p, c:payload.c,  f:payload.f, kcal:payload.kcal }
+                goals : {...goals, p:payload.p, c:payload.c,  f:payload.f, kcal:payload.kcal }
+            }
+
+        case 'setMacros':
+            return{
+                ...state,
+                macros: payload
+            }
+
+        case 'changeAmount':
+            return{
+                ...state,
+                selectedFoods: state.selectedFoods.map(
+                    food => food._id == payload.id? 
+                    {...food , selectedAmount:payload.selectedAmount} 
+                    : food
+                )
             }
 
         default:

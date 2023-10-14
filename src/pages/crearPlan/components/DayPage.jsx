@@ -1,24 +1,25 @@
+import { PlanContext } from '../context/planContext'
+
+//Comps
 import Macros from './Macros'
 import BuscadorAlimentos from './BuscadorAlimentos'
 import ListaSeleccionados from './ListaSeleccionados' 
 import ListaBusqueda from './ListaBusqueda'
+
+//React
 import { useEffect } from 'react'
-import { calculateMacros } from '../api'
+import { useContext } from 'react'
+
 // De momento no usare context o redux para pasar lo buscado a la lista
-// quizas luego si 
-
-
-// const objProteinas = 120
-// const objCarbohidratos = 320
-// const objGrasas = 70
-// const objKcal = 2390
 
 
 
 
 export function DayPage() {
 
-  
+  const {plan} = useContext(PlanContext)
+  const {p,c,f,kcal} = plan.macros
+
   return (
     <div className="flexH">
 
@@ -34,13 +35,13 @@ export function DayPage() {
         </div>
         {/* construir Componente */}
         <Macros macros={{p:120,c:320,f:70,kcal:2390}}  disable={false} />
-        <Macros macros={{p:0,c:0,f:0,kcal:0}}  disable={true}/>
+        <Macros macros={{p:p||0,c:c||0,f:f||0,kcal:kcal||0}}  disable={true}/>
         <BuscadorAlimentos/>
-        <ListaSeleccionados/>
+        {plan.selectedFoods.length != 0 ? <ListaSeleccionados/> : null}
       </div>
 
       <div className="flexV">
-        <ListaBusqueda/>
+        {plan.searchFood.length != 0 ? <ListaBusqueda/> : null}
       </div>
       
       

@@ -35,27 +35,27 @@ export function Panel() {
         <div className="log-items">
             <a href="/">Log-Out</a>
         </div>
-    </div>
-    <div className="flex-container">
-        <div className="slide-bar-container">
-            <div className="bar-tittle bar-item">
-                <p>DIET ASISST</p>
+        </div>
+        <div className="flex-container">
+            <div className="slide-bar-container">
+                <div className="bar-tittle bar-item">
+                    <p>DIET ASISST</p>
+                </div>
+                <div className={currentPath == '/verPacientes' ? "active bar-item":"bar-item" }>
+                    {/* <a href="/">Ver Pacientes</a> */}
+                <Link to={'verPacientes'}>Ver Pacientes</Link>
+                </div>
+                <div className={currentPath == '/crearAlimento' ? "active bar-item":"bar-item" }>
+                    <Link to={'crearAlimento'}>Crear Alimento</Link>
+                </div>
+                <div className={currentPath =='/crearPlan'? "active bar-item":"bar-item" }>
+                    <Link to={'crearPlan'}>Crear Plan</Link>
+                </div>
             </div>
-            <div className={currentPath == '/verPacientes' ? "active bar-item":"bar-item" }>
-                {/* <a href="/">Ver Pacientes</a> */}
-               <Link to={'verPacientes'}>Ver Pacientes</Link>
-            </div>
-            <div className={currentPath == '/crearAlimento' ? "active bar-item":"bar-item" }>
-                <Link to={'crearAlimento'}>Crear Alimento</Link>
-            </div>
-            <div className={currentPath =='/crearPlan'? "active bar-item":"bar-item" }>
-                <Link to={'crearPlan'}>Crear Plan</Link>
+            <div className="main-container">
+                <Outlet/>
             </div>
         </div>
-        <div className="main-container">
-            <Outlet/>
-        </div>
-    </div>
     </>
   )
 }

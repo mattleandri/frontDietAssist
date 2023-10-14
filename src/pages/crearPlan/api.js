@@ -24,18 +24,19 @@ export async function calculateMacros(foods){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({foods})
+            body: JSON.stringify(foods)
 
 
         })
         if(!response.ok) throw new Error(response.status)
 
         const data = await response.json()
-
         return data
+        
 
     }catch(err){
         console.log(err)
+        return {}
     }
 
 

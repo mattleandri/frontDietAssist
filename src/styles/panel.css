@@ -7,6 +7,7 @@
     font-size: 18px;
 }    
 
+
 a{
     text-decoration: none;
     color:inherit
@@ -73,6 +74,7 @@ img{
 
 .main-container{
     margin-left: 200px ;
+    width: calc(100vw - 200px);
 }
 
 .header{

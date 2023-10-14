@@ -9,6 +9,7 @@
 }
 
 
+
 .flexV{
     display: flex;
     flex-direction: column;
@@ -26,31 +27,37 @@
 /* macros */
 .divMacrosObtenidos{
     display: flex;
-    justify-content: space-between;
-    width: 350px;
-    padding-left: 20px;
-    padding-right: 20px;
+    justify-content: center;
+   
+    width: 370px;
+    padding-right: 5px;
     margin-top: 15px;
 
     background-color:#D8D8D8;
     border: solid #D8D8D8;
     border-radius: 10px;
-    gap: 3px;
+    gap: px;
 
 }
 
 .inputMacro{
-    width: 50px;
+    width: 70px;
     margin-left: 7px;
     background-color: #D8D8D8;
     border: none;
-    font-weight: 600;
+    font-weight: 500;
+    
 }
 
+.macroName{
+    font-size: 13px;
+}
 
 
 .macroItem{
     display: flex;
+    align-items: center;
+    width: 80px;
 }
 
 
@@ -62,6 +69,7 @@
     border: none;
     height: 35px;
     width: 350px;
+    padding-left: 10px;
 }
 
 
@@ -71,37 +79,112 @@
 }
 
 
+/* LISTA BUSQUEDA */
+
 
 .divBusquedaComida{
-    display:flex;
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    width: 360px;
+    gap:10px;
+
+    margin-top: 30px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+
+    background-color: #DAEAE4;
+    border-radius: 8px;
     
 }
 
 
 .itemBusquedaComida{
-    background-color: beige;
+  
+    position: relative;
+    display: flex;
+    gap: 10px;
     height: 50px;
     width: 400px;
+    padding-left: 10px;
+}
+
+.textNameItemBusqueda{
+   
+}
+
+.textAmountItemBusqueda{
+    position: absolute;
+    margin-left: 280px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.textMacrosItemBusqueda{
+    
+    position: absolute;
+    margin-top:25px ;
+    font-size: 13px;
+    font-weight: 300;
 }
 
 
+
 /* LISTA SELECCIONADOS */
+
+.divListaSeleccionados{
+    
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    gap:10px;
+
+    margin-top: 30px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+
+    background-color: #DAEAE4;
+    border-radius: 8px;
+
+}
 
 .divItemSeleccionado{
     display: flex;
     width: 300px;
     justify-content: space-between;
     margin-left: 30px;
-
-}
-
-.trashIcon{
     position: relative;
-}
 
+}
 .amountInput{
     width: 60px ;
     font-size: 15px;
+    position: absolute;
+    margin-left: 180px;
+    background-color: aliceblue;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.foodType{
+    position: absolute;
+    margin-left: 245px;
+    font-size: 15px;
+}
+
+.divTrashIcon{
+    position: relative;;
+}
+
+.trashIcon{
+    font-size: 17px;
+}
+
+
+/* NAV BAR DAY  */
+.divDayNavBar{
+    display: flex;
+
 }

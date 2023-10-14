@@ -8,10 +8,8 @@ export default function ListaSeleccionados() {
   const {plan} = useContext(PlanContext)
   const {selectedFoods} = plan
 
-  console.log(selectedFoods)
-
   return (
-    <div className="divListaAlimentos">
+    <div className="divListaSeleccionados">
      {selectedFoods.map(food =>{
       return (<ItemSeleccionado key={food._id} food={food} />)
      })}

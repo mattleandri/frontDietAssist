@@ -1,24 +1,29 @@
 import { useState } from "react";
 
-export function useFrom (form = {}) {
+export function useForm (form = {}) {
 
     const [formState,setFormState] = useState(form)
 
-    const onInputChange = ({target}) => {
+    const updateForm = (newVal)=>{
+        setFormState(newVal)
+    }
 
-        console.log(target)
-        const{name,value} = target
-        console.log(name)
+    const onInputChange = ({target}) => {
+    
+        const {name,value} = target
+
         setFormState({
             ...formState,
-            [name]:value
+            [name]: parseFloat(value)
         })
 
     }
 
     return{
+        ...formState,
         formState,
-        onInputChange
+        onInputChange,
+        updateForm
     }
 
 }

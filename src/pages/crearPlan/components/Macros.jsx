@@ -1,28 +1,36 @@
-import {useFrom} from "../../../hooks"
+import { useEffect } from "react"
+import {useForm} from "../../../hooks"
 
 export default function Macros({macros,disable}) {
 
-    const {formState,onInputChange} = useFrom(macros)
+    const {p,c,f,kcal,onInputChange,updateForm} = useForm(macros)
 
-    const {p,c,f,kcal} = formState
+    if(disable==true){
+        useEffect(()=>{
+            updateForm(macros)
+        },[macros])
+    }
+
+  
+
 
   return (
     <div className="divMacrosObtenidos">
         <div className="macroItem">
-            <p>P: </p>
-            <input disabled={disable?true:false} name="p" value={p} onChange={(e)=> onInputChange (e)} type="text" className="inputMacro" />
+            <p className="macroName">P: </p>
+            <input disabled={disable?true:false} name="p" value={p.toFixed(1)} onChange={(e)=> onInputChange (e)} type="text" className="inputMacro" />
         </div>
         <div className="macroItem">
-            <p>C: </p>
-            <input disabled={disable?true:false} name="c" value={c} onChange={(e)=> onInputChange (e)} type="text" className="inputMacro" />
+            <p className="macroName" >C: </p>
+            <input disabled={disable?true:false} name="c" value={c.toFixed(1)} onChange={(e)=> onInputChange (e)} type="text" className="inputMacro" />
         </div>
         <div className="macroItem">
-            <p>G: </p>
-            <input disabled={disable?true:false} name="f" value={f} onChange={(e)=> onInputChange (e)} type="text" className="inputMacro" />
+            <p className="macroName" >G: </p>
+            <input disabled={disable?true:false} name="f" value={f.toFixed(1)} onChange={(e)=> onInputChange (e)} type="text" className="inputMacro" />
         </div>
         <div className="macroItem kcal">
-            <p>Kcal:</p>
-            <input disabled={disable?true:false} name="kcal"  value={kcal} onChange={(e)=> onInputChange (e)} type="text" className="inputMacro" />
+            <p  className="macroName" >Kcal:</p>
+            <input disabled={disable?true:false} name="kcal"  value={kcal.toFixed(1)} onChange={(e)=> onInputChange (e)} type="text" className="inputMacro" />
         </div>
     </div>
   )
