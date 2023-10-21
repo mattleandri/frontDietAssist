@@ -8,13 +8,32 @@ export function useForm (form = {}) {
         setFormState(newVal)
     }
 
-    const onInputChange = ({target}) => {
+    const onInputChange = ({target},validations) => {
     
-        const {name,value} = target
+        let {name,value} = target
+        value = parseFloat(value)
+
+        if(validations){
+            switch (validations){
+
+                case  'positiveNumber':{
+
+                    if(
+                        (typeof(value)!='number')|| 
+                        value < 0 || 
+                        isNaN(value) 
+                        //((/^0+/.test(value)) && value.toString().length>1 ) TODO: Que si el valor es ej 001 se borren los ceros
+                        ) 
+                        
+                        value = 0
+
+                }
+            }
+        }
 
         setFormState({
             ...formState,
-            [name]: parseFloat(value)
+            [name]: parseFloat(value)   //TODO: Quitar parseFloat de aqui ya que me limitaria a que solo funciona para numeros
         })
 
     }

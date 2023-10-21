@@ -3,14 +3,14 @@ import { useState } from "react"
 
 import {getAlimentos} from '../api.js'
 import { useContext } from "react"
-import { PlanContext } from "../context/planContext.jsx"
+import { MealContext } from "../context/MealContext.jsx"
 
 export default function BuscadorAlimentos() {
 
   const [searchValue,setSearchValue] = useState('')
   const [alimentos,setAlimentos] = useState([])
 
-  const {searchFood} = useContext(PlanContext)
+  const {searchFood} = useContext(MealContext)
 
   useEffect(() => {
     

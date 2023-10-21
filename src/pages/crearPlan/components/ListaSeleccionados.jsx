@@ -1,11 +1,11 @@
 import { useContext } from "react"
-import { PlanContext } from "../context/planContext"
+import { MealContext } from "../context/MealContext"
 import ItemBusqueda from "./ItemBusqueda"
 import ItemSeleccionado from "./ItemSeleccionado"
 
 export default function ListaSeleccionados() {
 
-  const {plan} = useContext(PlanContext)
+  const {plan} = useContext(MealContext)
   const {selectedFoods} = plan
 
   return (

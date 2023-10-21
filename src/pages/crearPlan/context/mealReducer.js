@@ -8,9 +8,27 @@
   }
 */
 
-export function planReducer(state,{type,payload}){
+export function mealReducer(state,{type,payload}){
 
     switch (type) {
+
+        case 'updateFoodListDB':
+            return{
+                ...state,
+                updateFoodListDB:false
+            }
+        case 'loadFoods':
+            return{
+                ...state,
+                selectedFoods:[...state.selectedFoods,payload],
+                loadFoods:false
+            }
+        case 'changeMode':
+            return{
+                ...state,
+                autoCalculate : !state.autoCalculate
+            }
+
         case 'searchFood':
             return {
                 ...state,
@@ -29,20 +47,22 @@ export function planReducer(state,{type,payload}){
             else{        
                 return{
                     ...state,
-                    selectedFoods : [...state.selectedFoods , payload]   
+                    selectedFoods : [...state.selectedFoods , payload],
+                    updateFoodListDB:true
                 }
             }
 
         case 'deleteFood':
             return{
                 ...state,
-                selectedFoods: state.selectedFoods.filter( food => food._id != payload)
+                selectedFoods: state.selectedFoods.filter( food => food._id != payload),
+                updateFoodListDB:true
             }
 
         case 'setGoals':
             return{
                 ...state,
-                goals : {...goals, p:payload.p, c:payload.c,  f:payload.f, kcal:payload.kcal }
+                goal : {...state.goals, p:payload.p, c:payload.c,  f:payload.f, kcal:payload.kcal }
             }
 
         case 'setMacros':
@@ -58,7 +78,8 @@ export function planReducer(state,{type,payload}){
                     food => food._id == payload.id? 
                     {...food , selectedAmount:payload.selectedAmount} 
                     : food
-                )
+                ),
+                updateFoodListDB:true,
             }
 
         default:

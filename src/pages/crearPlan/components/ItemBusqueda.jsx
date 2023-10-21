@@ -1,11 +1,10 @@
 import {useContext} from 'react'
-import { PlanContext } from "../context/planContext"
+import { MealContext } from "../context/MealContext"
 
 export default function ItemBusqueda({food}) {
 
-  const {addFood,cleanSearch} = useContext(PlanContext)
+  const {addFood,cleanSearch} = useContext(MealContext)
 
-  console.log(food)
 
   return (
     <div className='itemBusquedaComida' onClick={()=>{ addFood ({...food, selectedAmount: food.type=='w'?100:1}); cleanSearch() }}>

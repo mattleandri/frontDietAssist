@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import { PlanContext } from "../context/planContext"
+import { MealContext } from "../context/MealContext"
 import ItemBusqueda from "./ItemBusqueda"
 
 export default function ListaBusqueda() {
 
-  const {plan} = useContext(PlanContext)
+  const {plan} = useContext(MealContext)
   const {searchFood} = plan
   
   return (

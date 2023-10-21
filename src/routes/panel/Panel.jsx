@@ -20,7 +20,6 @@ export function Panel() {
     const location=useLocation()
     
     const inputRef =useRef(null)
-    console.log(inputRef.current)
 
     const focusInput = ()=>{
         inputRef.curent.focus()

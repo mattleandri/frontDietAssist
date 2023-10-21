@@ -1,50 +1,58 @@
-import { PlanContext } from '../context/planContext'
-
-//Comps
-import Macros from './Macros'
-import BuscadorAlimentos from './BuscadorAlimentos'
-import ListaSeleccionados from './ListaSeleccionados' 
-import ListaBusqueda from './ListaBusqueda'
-
-//React
 import { useEffect } from 'react'
-import { useContext } from 'react'
+import MealProvider from '../context/MealProvider.jsx'
+import { MealComponent } from './MealComponent.jsx'
+import { useAsyncEffect } from '../../../hooks/useAsyncEffect.js'
+import { getDay,getAlimentosById } from '../api.js'
+import { useLoaderData } from 'react-router-dom'
 
-// De momento no usare context o redux para pasar lo buscado a la lista
+//TODO: Posiblemente si debere crear un DayProvider. Para manejar CURD de meals y 
+// para obtener facilmente los resultados totales del dia ... quizas no sea necesario. Ya se vera
 
 
+export const dayLoader = async(params) => {
 
+  const {planId,dayName} = params
+
+  const dayData = await getDay(planId,dayName)
+
+  try{
+
+    const dayDataWithFoodsPromise = {
+      ...dayData , meals: await Promise.all( dayData.meals.map( async  meal => {
+        return {...meal, foods: await Promise.all( meal.foods.map( async(food)=>{
+          return {selectedAmount: food.amount , ... await getAlimentosById(food.foodId)}
+        }) )}
+    }))}
+  
+
+    return dayDataWithFoodsPromise
+
+  }catch(err){
+    console.log(err)
+  }
+
+  
+}
 
 export function DayPage() {
 
-  const {plan} = useContext(PlanContext)
-  const {p,c,f,kcal} = plan.macros
+  const dayDataWithFoods = useLoaderData()
+  console.log(dayDataWithFoods)
 
+
+  //TODO:Cuidado con la key. Meal.name puede ser igual en los distintos dias Hacer validacion...
   return (
-    <div className="flexH">
-
-      <div className='flexV'>
-        <div className="opcArriba flex">
-        <button className="checkBtn" ></button>
-        <button className="confDistBtn" >Configurar Distribucion</button>
-          </div>
-        <div className="divNombrePlato">
-          <h1>
-              Plato 1
-          </h1>
+    <div className='divMeals'>
+     
+     {dayDataWithFoods.meals.map((meal)=>{
+      return(
+        <div key={`${meal.name}`} >
+          <MealProvider mealData={meal}>
+            <MealComponent name={meal.name} />
+          </MealProvider>
         </div>
-        {/* construir Componente */}
-        <Macros macros={{p:120,c:320,f:70,kcal:2390}}  disable={false} />
-        <Macros macros={{p:p||0,c:c||0,f:f||0,kcal:kcal||0}}  disable={true}/>
-        <BuscadorAlimentos/>
-        {plan.selectedFoods.length != 0 ? <ListaSeleccionados/> : null}
-      </div>
-
-      <div className="flexV">
-        {plan.searchFood.length != 0 ? <ListaBusqueda/> : null}
-      </div>
-      
-      
+      )
+     })}     
     </div>
   )
 }

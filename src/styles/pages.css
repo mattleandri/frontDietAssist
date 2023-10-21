@@ -1,13 +1,26 @@
+.planPageHeader{
+    background-color: #FAFAFA;
+}
+
+.divOpcArriba{
+    display: flex;
+    width: 360px;
+    justify-content: space-between;
+}
 .checkBtn{
+    margin-left: 10px;
     height: 20px;
     width: 20px;
     background-color: white
 }
 
-.checkBtn.check{
-    background-color: rgb(230, 235, 233);
+.check{
+    background-color: rgb(152, 189, 173);
 }
 
+.divButtonAuto{
+    display: flex;
+}
 
 
 .flexV{
@@ -109,10 +122,6 @@
     padding-left: 10px;
 }
 
-.textNameItemBusqueda{
-   
-}
-
 .textAmountItemBusqueda{
     position: absolute;
     margin-left: 280px;
@@ -183,8 +192,81 @@
 }
 
 
+
 /* NAV BAR DAY  */
 .divDayNavBar{
+
+    background-color:#FAFAFA ;
     display: flex;
+    width: calc(100vw - 200px);
+    align-items: flex-start;
+    margin-top: 30px;
+    padding-left: 20px;
 
 }
+
+.dayBarItem{
+    display: flex;
+    justify-content: center;
+    height: 25px;
+    width: 200px;
+    cursor: pointer;
+
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+
+}
+
+.daySelected{
+    
+    background-color: #E3EFEF;
+}
+
+.lineaFinMeal{
+    margin-top: 50px;
+    width: 400px;
+}
+
+
+.divMeals{
+    display: flex; 
+    flex-direction: column;
+    gap: 100px;
+}
+
+
+/* DOUGHNUT */
+.macroDoughnut{
+    margin-top: 10px;
+    height: 300px;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* SELECTORES */
+
+.divSelectorCard{
+    margin-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.cardButton{
+    padding-left: 30px;
+    padding-top: 10px;
+    display: flex;
+    border-radius: 10px;
+    height: 50px;
+    width: 200px;
+    background-color: #DAEAE4;
+
+    font-size: 18px;
+}
+
+
