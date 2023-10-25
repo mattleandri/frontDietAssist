@@ -1,4 +1,3 @@
-
 import { getPatients } from "../../verPacientes/api"
 import { useState,useEffect } from "react"
 import { Link, Outlet } from "react-router-dom"
@@ -20,7 +19,6 @@ export function SelectorPacientes(){
 
     const effectAsync =  async()=>{
       setPacientes (await getPatients())
-    console.log(pacientes)
     } 
     effectAsync()
   },[location.pathname])
