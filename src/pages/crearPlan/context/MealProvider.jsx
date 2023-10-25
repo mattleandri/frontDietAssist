@@ -1,5 +1,6 @@
-import {changeMode,searchFood,cleanSearch,addFood,deleteFood,setGoals,setMacros,changeAmount,updateFoodListDB,loadFoods} from './mealActions.js' 
-import {updateMealGoalDB} from './APIasyncPostActions.js'
+import {changeMode,searchFood,cleanSearch,addFood,deleteFood,setGoals,setMacros,changeAmount,updateFoodListDB,loadFoods
+,setMealName} from './mealActions.js' 
+import {updateMealGoalDB,setMealNameDB,addMealDB} from './APIasyncPostActions.js'
 
 import { calculateMacros, getAlimentosById, putSelectedFoods } from "../api"
 import { MealContext } from "./MealContext"
@@ -12,7 +13,6 @@ import { useParams } from 'react-router-dom'
 
 
   function mealReducerInit({foods,goal,name,percentage}){
-  console.log('incializando')
 
     return{
       name:name,
@@ -98,8 +98,11 @@ export default function MealProvider({children,mealData}) {
     addFood: (food) => {  addFood(dispatch, food)}, //mod DB. async postActions tratada con useEffect (Send to DB selectedFoods)
     deleteFood: (id) => deleteFood(dispatch, id),   //mod DB. async postActions tratada con useEffect (Send to DB selectedFoods)
     changeAmount: (data) => changeAmount(dispatch, data), //mod DB. async postActions tratada con useEffect (Send to DB selectedFoods)
-    setGoals: (goals) => {setGoals(dispatch, goals) ; updateMealGoalDB(goals,planId,dayName,plan.name) }, // TODO: mod DB 
+    setGoals: (goals) => {setGoals(dispatch, goals) ; updateMealGoalDB(goals,planId,dayName,plan.name) }, // mod DB 
     setMacros: (macros) => setMacros(dispatch, macros), //no mod DB (refresca los macros resultados tras solicitar API calculo) ... quizas luego se guarde en DB para no tener que recalcular cada que se carga pagina... pero no creo. Veo posibles conflictos
+    setMealName : async (previousName,newName) => { const result = await setMealNameDB(newName,planId,dayName,previousName) //mod DB
+      ;if(result) {setMealName (dispatch,newName);  return result }
+      ; if(!result) { console.log('geteF') ; return result }}, 
   };
 
   return (

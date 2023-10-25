@@ -68,3 +68,12 @@ export const changeAmount = (dispatch,data)=>{
     payload:data
     })
 }
+
+export const setMealName = (dispatch,newName) =>{
+
+    dispatch({
+        type:'setMealName',
+        payload: newName
+    })
+
+}

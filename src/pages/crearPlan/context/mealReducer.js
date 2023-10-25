@@ -82,6 +82,13 @@ export function mealReducer(state,{type,payload}){
                 updateFoodListDB:true,
             }
 
+        case 'setMealName':
+            console.log(payload)
+            return{
+                ...state,
+                name:payload
+            }
+
         default:
             return state
     }
