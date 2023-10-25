@@ -8,32 +8,34 @@ import ListaSeleccionados from './ListaSeleccionados'
 import ListaBusqueda from './ListaBusqueda'
 
 //React
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useContext } from 'react'
 
 //Chart
 import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
+import TituloEditable from './TituloEditable'
 
 // De momento no usare context o redux para pasar lo buscado a la lista
 
 
 
 
-export function MealComponent({name}) {
 
+export function MealComponent({addMealFunction,deleteMealFunction}) {
+
+    
     const planContext = useContext(MealContext)
     const {plan} = planContext
-    const {macros,goal} = plan
+    const {macros,goal,name} = plan
 
-    const {changeMode} = planContext
-
+    const {changeMode,setMealName} = planContext
 
     const doughnutData = {
         labels: ['Protein', 'Carbos', 'Fats'],
         datasets: [
           {
-            label: 'Meal Distribution',
+            label: 'gramos',
             data: [macros.p,macros.c,macros.f],
             backgroundColor: [
               'rgba(197, 231, 196, 0.2)',
@@ -50,30 +52,30 @@ export function MealComponent({name}) {
         ],
       }
 
+
     return (
 
         <div className="flexH">
 
             <div className='flexV'>
-                <div className="divOpcArriba ">
-                <div className="divButtonAuto">
-                    <p>Auto</p>
-                    <button onClick={()=>changeMode()} className={`checkBtn ${plan.autoCalculate?"check":""}`}></button>
-                </div>
-                <button className="confDistBtn" >Configurar Distribucion</button>
-                </div>
                 <div className="divNombrePlato">
-                <h1>
-                    {name} 
-                </h1>
+                <TituloEditable name={name} setName={setMealName} clase={'textNombrePlato'} />
+                  <div className="divButtonAuto">
+                      <p className='autoText'>Auto</p>
+                      <button onClick={()=>changeMode()} className={`checkBtn ${plan.autoCalculate?"checked":""}`}></button>
+                      <i onClick={()=>deleteMealFunction(name)} className='bx bx-x'></i>
+                  </div>
                 </div>
                 {/* construir Componente */}
                 <Macros macros={goal?goal:{p:0,c:0,f:0,kcal:0}}  disable={false} />
                 <Macros macros={macros?macros:{p:0,c:0,f:0,kcal:0}}  disable={true}/>
                 <BuscadorAlimentos/>
                 {plan.selectedFoods.length !=0?  <ListaSeleccionados/> : null}
+
+                <div className="divMealBottom">
+                  <hr className='lineaFinMeal'/> <button className='buttonAggPlato' onClick={()=>addMealFunction(name)}><p>+</p></button>
+                </div>
                 
-                <hr className='lineaFinMeal'/>
             </div>
 
             <div className="flexV">
