@@ -7,16 +7,9 @@
     width: 360px;
     justify-content: space-between;
 }
-.checkBtn{
-    margin-left: 10px;
-    height: 20px;
-    width: 20px;
-    background-color: white
-}
 
-.check{
-    background-color: rgb(152, 189, 173);
-}
+
+
 
 .divButtonAuto{
     display: flex;
@@ -89,6 +82,54 @@
 
 .divListaAlimentos{
     margin-top: 20px;
+}
+
+.divNombrePlato{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 350px;
+}
+
+.textNombrePlato{
+    font-size: 23px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+/* .user-select-none {
+    user-select: none;
+  } */
+
+/* BOTON AUTO */
+
+.divButtonAuto{
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.autoText{
+    font-size: 12px;
+   
+}
+
+.checkBtn{
+    margin-left: 10px;
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    border: solid 1px black;
+}
+
+.checked{
+    background-color: rgb(152, 189, 173);
+}
+
+.textPlanName{
+    margin-left: 30px;
+    padding-top: 20px;
+    font-size: 22px;
 }
 
 
@@ -198,7 +239,7 @@
 
     background-color:#FAFAFA ;
     display: flex;
-    width: calc(100vw - 200px);
+    width: calc(100vw - 220px);
     align-items: flex-start;
     margin-top: 30px;
     padding-left: 20px;
@@ -216,23 +257,62 @@
     border-top-right-radius: 10px; 
 
 }
+.dayBarItemInside{
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+
+.dayName{
+    margin-top: 3px;
+    font-size: 16px;
+}
+
+.dayBayPencil{
+    position: relative;
+    margin-left: 40px;
+    font-size: 12px;
+}
+
+.dayBarTrash{
+    position: relative;
+    margin-left: 60px;
+    font-size: 12px;
+}
 
 .daySelected{
     
     background-color: #E3EFEF;
 }
 
-.lineaFinMeal{
-    margin-top: 50px;
-    width: 400px;
-}
-
-
 .divMeals{
     display: flex; 
     flex-direction: column;
     gap: 100px;
 }
+
+
+.divMealBottom{
+    margin-top: 20px;
+    display: flex;
+    align-items: center
+    
+}
+.lineaFinMeal{
+    margin-top: 4px;
+    width: 380px;
+}
+
+.buttonAggPlato{
+    margin-left: 10px;
+    display: flex;
+    height: 22px;
+    width: 22px;
+    align-items: center;
+    justify-content: center;
+
+}
+
 
 
 /* DOUGHNUT */
@@ -270,3 +350,62 @@
 }
 
 
+
+/* DELETE MODAL */
+
+.divFondoDeleteModal{
+    position: fixed;
+    top: 0;
+    left: 200;
+    display: flex;
+    background-color:  rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    width: calc( 100vw - 200px);
+    z-index: 1000;
+    
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.divDeleteModal{
+
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 500px;
+    margin-left: -100px;
+    margin-top: -200px;
+    background-color: #DAEAE4;
+    border-radius: 10px;
+    padding: 30px 30px;
+
+}
+
+.DivBotonesDeleteModal{
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.button{
+    height: 40px;
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    
+}
+
+.button:hover{
+    border: solid 0.5px black;
+}
+
+.deleteButton{
+    background-color: #FAE2E2
+    
+}
+
+.no-scroll {
+    overflow: hidden;
+}
