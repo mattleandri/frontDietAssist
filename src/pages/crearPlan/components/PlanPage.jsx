@@ -1,5 +1,6 @@
 import { planReducer } from "./planPageReducer";
-import { setPlan } from "./planPageReducerActions";
+import { addDay, setPlan,deleteDay,setDayName } from "./planPageReducerActions";
+import { addDayDB,deleteDayDB,setDayNameDB } from "./APIsyncPlanPageActions";
 
 import { useEffect, useReducer, useState } from "react";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -7,14 +8,14 @@ import { getPlan } from "../api";
 import { NavBarDay } from "./NavBarDay";
 
 
-//TODO: Aqui leere la URL para solicitar a DB el Plan adecuado
+//TODO: Crear un Contexto que contenga nombre del Paciente ... o un fgetPatientNamebyId y usar el id que esta en idPlan
 
 export default function PlanPage() {
 
 
   //const [plan,setPlan] = useState()
 
-  const [plan,distpatch] = useReducer(planReducer,null)
+  const [plan,dispatch] = useReducer(planReducer,null)
 
   //const [days,setDays] = useState([])
   const [dayData,setDayData] = useState({})
@@ -27,28 +28,34 @@ export default function PlanPage() {
   useEffect(()=>{
     const asyncEffect = async () => {
       const dataPlan = await getPlan(planId)
-      setPlan(distpatch,dataPlan)
+      setPlan(dispatch,dataPlan)
     }
     asyncEffect()
   },[])
   
   useEffect(()=>{
     if(plan){
-      navigate(`./${plan.days[0].name}`) //TODO: Para que se muestre el ultimo dia creado. A mejorar luego CAMBIAR CUANTO ANTES a localStorage. ultimo mod
+      const lastDay = localStorage.getItem('lastDay')
+      navigate(lastDay? `./${lastDay}` : `./${plan.days[0].name}`) //TODO: Para que se muestre el ultimo dia creado. A mejorar luego CAMBIAR CUANTO ANTES a localStorage. ultimo mod
     }
   },[plan])
 
-  // useEffect(()=>{
-  //   if(plan) setDayData(plan.days.filter(day=>day.name ==`${dayName}`))
-  // },[location.pathname])
 
-  console.log(plan?plan:null)
+  const dayActions = {
+
+    addDay : async(dayName) =>  {const newDay = await addDayDB (planId) ; addDay(dispatch,newDay)  },
+    deleteDay :async(dayName) => { deleteDay(dispatch,dayName) ;localStorage.removeItem('lastDay') ; deleteDayDB(planId,dayName) },
+    setDayName : async (previousName,newName) => { const result = await setDayNameDB(planId,previousName,newName) //mod DB
+    ;if(result) {setDayName (dispatch,{previousName,newName}); localStorage.setItem('lastDay',newName) ;  return result }
+    ; if(!result) { console.log('Nombre ya existente') ; return result }}, 
+    
+  }
 
   return (
     <div>
       <div className="planPageHeader">
-        <p>Nombre del Plan | Paciente</p>
-        <NavBarDay days={plan?plan.days:[]} distpatch={distpatch}/>
+        <p className="textPlanName">{`${plan?plan.name:''}`}</p>
+        <NavBarDay days={plan?plan.days:[]} dayActions={dayActions}/>
       </div>
       <Outlet/>
     </div>

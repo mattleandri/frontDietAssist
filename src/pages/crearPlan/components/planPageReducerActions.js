@@ -1,22 +1,32 @@
 import { getPlan } from "../api"
 
-export function setPlan(distpatch,plan){
-    console.log('entro')
-    distpatch(
+export function setPlan(dispatch,plan){
+    dispatch(
         {type: 'setPlan',
         payload: plan
     })
 }
 
-export function addDay(distpatch,dayName){
-
-    distpatch({
+export function addDay(dispatch,dayData){
+    dispatch({
         type:'addDay',
-        payload: dayName
+        payload: dayData
     })
-
-    addDay('dayName')
 }
 
+export function deleteDay(dispatch,dayName){
+    dispatch({
+        type:'deleteDay',
+        payload: dayName
+    })
+}
+
+export function setDayName(dispatch,dayNames){
+    dispatch({
+        type:'setNameDay',
+        payload:dayNames
+    })
+}
 
 //AsyncActions
+
