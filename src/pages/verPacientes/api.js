@@ -8,7 +8,7 @@ export async function getPatients(){
   const token = localStorage.getItem('accesToken')
 
     try{
-      const resp = await fetch('http://localhost:3000/verPacientes',{
+      const resp = await fetch(`${import.meta.env.VITE_MAINAPI}/patients/getPatients`,{
         headers: {'Authorization': `Bearer ${token}`}
       }
       )

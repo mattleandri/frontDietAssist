@@ -3,7 +3,7 @@ export const updateMealGoalDB = async (goals,planId,dayName,mealName) =>{
 
     try{
         //console.log(goals,planId,dayName,mealName)
-        const response  = await fetch(`http://localhost:3000/CreatePlan/updateMealGoal/${planId}/${dayName}/${mealName}`,{
+        const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/updateMealGoal/${planId}/${dayName}/${mealName}`,{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ export const setMealNameDB = async (newMealName,planId,dayName,mealName) => {
 
     try{
         //console.log(goals,planId,dayName,mealName)
-        const response  = await fetch(`http://localhost:3000/CreatePlan/updateMealName/${planId}/${dayName}/${mealName}`,{
+        const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/updateMealName/${planId}/${dayName}/${mealName}`,{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ export const addMealDB = async (mealNameClicked,planId,dayName)=> {
     try{
         console.log(mealNameClicked)
 
-        const response  = await fetch(`http://localhost:3000/CreatePlan/addMeal/${planId}/${dayName}`,{
+        const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/addMeal/${planId}/${dayName}`,{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ export const deleteMealDB = async (planId,dayName,mealName) =>{
 
     try{
 
-        const response  = await fetch(`http://localhost:3000/CreatePlan/deleteMeal/${planId}/${dayName}/${mealName}`,{
+        const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/deleteMeal/${planId}/${dayName}/${mealName}`,{
             method: 'DELETE',
         })
 

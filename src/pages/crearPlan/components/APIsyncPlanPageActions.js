@@ -1,7 +1,7 @@
 export async function addDayDB (planId){
 
     try{
-        const result = await fetch(`http://localhost:3000/createPlan/addDay/${planId}`,{
+        const result = await fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/addDay/${planId}`,{
             method: 'PUT',
         })
 
@@ -18,7 +18,7 @@ export async function addDayDB (planId){
 export async function deleteDayDB (planId,dayName){
 
     try{
-        const result = await fetch(`http://localhost:3000/createPlan/deleteDay/${planId}/${dayName}`,{
+        const result = await fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/deleteDay/${planId}/${dayName}`,{
             method: 'DELETE',
         })
 
@@ -33,7 +33,7 @@ export async function deleteDayDB (planId,dayName){
 export async function setDayNameDB (planId,previousName,newDayName){
 
     try{
-        const response = await fetch(`http://localhost:3000/createPlan/setDayName/${planId}/${previousName}`,{
+        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/setDayName/${planId}/${previousName}`,{
             method: 'PUT', 
             headers: {
                 'Content-Type': 'application/json'
