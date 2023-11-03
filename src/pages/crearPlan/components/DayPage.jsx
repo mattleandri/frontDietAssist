@@ -63,7 +63,7 @@ export function DayPage() {
     <div className='divMeals'>
 
       {showDeleteModal ? <DeleteModal name={showDeleteModal} setShowDeleteModal={setShowDeleteModal}  
-      confirmDelete={confirmMealDelete}/> 
+      confirmDelete={()=>confirmMealDelete(showDeleteModal)}/> 
       : null}
 
 

@@ -63,7 +63,7 @@ export function MealComponent({addMealFunction,deleteMealFunction}) {
                   <div className="divButtonAuto">
                       <p className='autoText'>Auto</p>
                       <button onClick={()=>changeMode()} className={`checkBtn ${plan.autoCalculate?"checked":""}`}></button>
-                      <i onClick={()=>deleteMealFunction(name)} className='bx bx-x'></i>
+                      <i onClick={()=>deleteMealFunction(name)} className='bx bx-x mealTrashButton'></i>
                   </div>
                 </div>
                 {/* construir Componente */}
