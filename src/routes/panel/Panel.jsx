@@ -1,22 +1,22 @@
 import { useEffect, useRef } from "react"
 import { Link, Outlet, useLocation } from "react-router-dom"
-import '../../styles/panel.css';
+//import '../../styles/panel.css';
 
 export function Panel() {
 
-    useEffect(()=> async function (){
+    // useEffect(()=> async function (){
 
-        const token =  localStorage.getItem('accesToken')
+    //     const token =  localStorage.getItem('accesToken')
 
-        const res =  await fetch('http://localhost:3000/Panel/getPanel',{
-            headers:{xtoken:token}
-        })
+    //     const res =  await fetch('http://localhost:3000/Panel/getPanel',{
+    //         headers:{xtoken:token}
+    //     })
 
-        //const data = await res.json()
-        console.log(res.status)
+    //     //const data = await res.json()
+    //     console.log(res.status)
 
 
-    },[])
+    // },[])
     const location=useLocation()
     
     const inputRef =useRef(null)
