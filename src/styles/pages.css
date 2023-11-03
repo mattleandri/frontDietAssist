@@ -80,6 +80,8 @@
 
 
 
+
+
 .divListaAlimentos{
     margin-top: 20px;
 }
@@ -96,6 +98,9 @@
     margin-bottom: 10px;
     margin-left: 20px;
 }
+
+
+
 
 /* .user-select-none {
     user-select: none;
@@ -337,23 +342,151 @@
 
 }
 
+.divPacienteButton{
+    position: relative;
+}
+
+.deleteButtonPacientes{
+    position: absolute;
+    margin-left: -1270px;
+    margin-top: 2px ;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 1
+        
+}
+.deleteButtonPacientes:hover{
+    font-weight: bold;
+}
+
 .cardButton{
     padding-left: 30px;
     padding-top: 10px;
     display: flex;
     border-radius: 10px;
-    height: 50px;
-    width: 200px;
+    height: 80px;
+    width: 250px;
     background-color: #DAEAE4;
 
     font-size: 18px;
 }
 
 
+.plusSelectorButton{
+  
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 100px;
+    height: 50px;
+    width: 50px;
+    background-color: #DAEAE4;
+    font-size: 18px;
 
-/* DELETE MODAL */
+    cursor:pointer
+}
 
-.divFondoDeleteModal{
+
+/* PACIENTES LISTA */
+
+
+.divPcienteInfo{
+    display: flex;
+}
+
+.textoNombrePaciente{
+    font-weight: 600;
+}
+
+.textoDeportePaciente{
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.textoOcupacionPaciente{
+    margin-top: 3px;
+    font-size: 12px;
+}
+
+/* PACIENTE MODAL*/
+.divPacienteModal{
+
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 800px;
+    margin-left: -100px;
+    background-color: #DAEAE4;
+    border-radius: 10px;
+    padding: 30px 30px;
+
+}
+
+.divOpcionesPaciente{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    justify-content: center;
+    gap: 20px;
+}
+
+.divOpcLinea{
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.divTextOpcPaciente{
+    display: flex;
+    position: relative;
+    gap: 10px;
+}
+
+.inputTextOpcPaciente,
+.inputNumberOpcPaciente,
+.inputTextLongOpcPaciente,
+.inputDNIOpcPaciente,
+.inputLittleNumberOpcPaciente {
+  border: none;
+  border-radius: 5px;
+  height: 25px;
+  padding-left: 10px;
+}
+
+.inputTextOpcPaciente {
+  width: 180px;
+}
+
+.inputNumberOpcPaciente {
+  width: 80px; 
+}
+
+.inputTextLongOpcPaciente{
+    position: absolute;
+    margin-left: 120px;
+    width: 500px;
+}
+
+.inputDNIOpcPaciente{
+    width: 110px;
+}
+
+.inputLittleNumberOpcPaciente{
+    width: 50px;
+}
+
+.platosDiarios{
+    margin-left: 50px;
+}
+
+.mt70{
+    margin-top: 70px;
+}
+
+
+/*MODLA GENERAL */
+
+.divFondoModal{
     position: fixed;
     top: 0;
     left: 200;
@@ -367,6 +500,10 @@
     justify-content: center;
     
 }
+
+/* DELETE MODAL */
+
+
 
 .divDeleteModal{
 
@@ -383,8 +520,9 @@
 }
 
 .DivBotonesDeleteModal{
-    margin-top: 70px;
+
     display: flex;
+    margin-top: 100px;
     justify-content: space-around;
 
 }
