@@ -9,8 +9,6 @@ export default function Macros({macros,disable}) {
     const {setGoals} = useContext(MealContext)
     const {p,c,f,kcal,onInputChange,updateForm} = useForm(macros)
 
-    //TODO: Quitar estado propio del componente. Solo consumir el Provider y actualizarlo con onChange... useForm innecesario. Igualmente agg valid. valid?setGoals:null ( de postiveNumber)
-
 
     if(disable==true){
         useEffect(()=>{
@@ -23,7 +21,7 @@ export default function Macros({macros,disable}) {
         <div className="macroItem">
             <p className="macroName">P: </p>
             <input disabled={disable?true:false} name="p" value={p?p.toFixed(1):0} 
-            onChange={(e)=> {onInputChange (e,'positiveNumber'); setGoals({p:parseFloat(e.target.value) , c:c, f:f , kcal:kcal }) }} 
+            onChange={(e)=> {onInputChange (e,'positiveNumber','number'); setGoals({p:parseFloat(e.target.value) , c:c, f:f , kcal:kcal }) }} 
             type="number" className="inputMacro" />
         </div>
         <div className="macroItem">
