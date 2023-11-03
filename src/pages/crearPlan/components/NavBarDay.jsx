@@ -10,12 +10,9 @@ export function NavBarDay({days,dayActions}) {
   const location = useLocation()
   const [showDeleteModal,setShowDeleteModal] = useState(false)
 
-  
-  console.log()
-
   return (
     <>
-      {showDeleteModal?<DeleteModal name={showDeleteModal} setShowDeleteModal={setShowDeleteModal} confirmDelete={dayActions.deleteDay} />:null}
+      {showDeleteModal?<DeleteModal name={showDeleteModal} setShowDeleteModal={setShowDeleteModal} confirmDelete={()=>dayActions.deleteDay(showDeleteModal)} />:null}
       <div className="divDayNavBar">
         
           {days.map((day)=>{
