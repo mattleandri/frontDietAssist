@@ -1,3 +1,5 @@
+import CreatePlanModal from "./CreatePlanModal"
+import { newPlan } from "../api";
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { useParams } from "react-router-dom"
@@ -8,6 +10,7 @@ export default function SelectorPlanes() {
     const location = useLocation()
     const {patientId} = useParams()
 
+    const [showPlanModal,setShowPlanModal] = useState(false)
 
     useEffect(()=>{
         const assyncEffect = async () =>{
@@ -16,16 +19,34 @@ export default function SelectorPlanes() {
         assyncEffect()
     },[])
 
+    const selectorPlanActions = {
+        newPlan : async (data) => {const result =  await newPlan({...data,patientId:patientId}); console.log(result) ; 
+        if(result) setPlanes([...planes, result]) ; return result }
+    }
+
+    console.log(planes)
 
   return (
+    <>
     <div className="divSelectorCard">
         {planes.map(plan =>{
             return(
                 <div key={plan.name} className="planSelector">
-                    <Link className='cardButton' to={`../../${patientId}@${plan.name}`}> {plan.name}</Link>
+                    <Link className='cardButton' to={`../../${patientId}@${plan.name}`}> 
+                        <div className="divPacienteInfo"> 
+                            <p className="textoNombrePaciente">{`${plan.name}`}</p>
+                            {/* <p className="textoDeportePaciente" >{`kcal:${plan.goal.kcal} p:${plan.goal.p} c:${plan.goal.c}`}</p> */}
+                        </div>
+                    </Link>
                 </div>
             )
         })}
+        <div onClick={setShowPlanModal} className="plusSelectorButton">
+        <p >+</p>
+        </div>
     </div>
+    
+    {showPlanModal && <CreatePlanModal setShowModal={setShowPlanModal} confirm={selectorPlanActions.newPlan}/>}
+    </>
   )
 }
