@@ -6,33 +6,7 @@ import { AuthContext } from './context/AuthContext';
 
 
 
-async function handleLogin (user,pass,login,navigate){
 
-    const response = await fetch('http://localhost:3000/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-          },
-        body:JSON.stringify({
-            'username':user,
-            'password':pass
-        })
-    })
-
-    const data = await response.json()
-
-    if(response.status == 200) {
-        localStorage.setItem('accesToken',data.token)
-        await login()
-        navigate('/panel')
-        
-    }
-
-    if(response.status == 401 ){
-        //navigate('/auth')
-        alert('Usuario/Contrasenia incorrecta')
-    }
-}
 
 export function Auth() {
 
@@ -65,7 +39,7 @@ export function Auth() {
             <button type='checkbox' className='check'></button>
         </div>
         <div className="loginDiv container ">
-            <button onClick={()=>{handleLogin(username,password,login,navigate)}} className='loginBtn' >Iniciar Sesion</button>
+            <button onClick={()=>{login(username,password,navigate)}} className='loginBtn' >Iniciar Sesion</button>
         </div>
         <div className="footer container">
             <span >
