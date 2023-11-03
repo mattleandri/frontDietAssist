@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {createBrowserRouter,RouterProvider, Navigate} from "react-router-dom"
+import {createBrowserRouter,createHashRouter,RouterProvider, Navigate} from "react-router-dom"
 import AuthProvider from './auth/context/AuthProvider'
 
 //Pages and Loaders
@@ -14,10 +14,10 @@ import { SelectorPacientes } from '../pages/crearPlan/components/SelectorPacient
 import SelectorPlanes from '../pages/crearPlan/components/SelectorPlanes'
 import PlanPage from '../pages/crearPlan/components/PlanPage'
  
-const router=createBrowserRouter([
+const router=createHashRouter([
   {
     path:'/',
-    element: <Navigate to="/auth" />
+    element: <Navigate to='/auth' />
   },
   {
     path:'/auth',
