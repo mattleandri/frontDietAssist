@@ -28,10 +28,6 @@ export function planReducer(state,{type,payload}){
                     else return day
                 })  ]
             }
-
-            console.log(newSate)
-            return newSate
-
         case 'deleteDay':
             return{
                 ...state,

@@ -102,7 +102,7 @@ export default function MealProvider({children,mealData}) {
     setMacros: (macros) => setMacros(dispatch, macros), //no mod DB (refresca los macros resultados tras solicitar API calculo) ... quizas luego se guarde en DB para no tener que recalcular cada que se carga pagina... pero no creo. Veo posibles conflictos
     setMealName : async (previousName,newName) => { const result = await setMealNameDB(newName,planId,dayName,previousName) //mod DB
       ;if(result) {setMealName (dispatch,newName);  return result }
-      ; if(!result) { console.log('geteF') ; return result }}, 
+      ; if(!result) {  return result }}, 
   };
 
   return (

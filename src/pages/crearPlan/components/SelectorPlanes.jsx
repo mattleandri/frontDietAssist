@@ -24,8 +24,6 @@ export default function SelectorPlanes() {
         if(result) setPlanes([...planes, result]) ; return result }
     }
 
-    console.log(planes)
-
   return (
     <>
     <div className="divSelectorCard">

@@ -17,8 +17,6 @@ export function Auth() {
     const {login} = useContext(AuthContext)
 
     const authContext= useContext(AuthContext)
-    console.log(authContext)
-
 
   return (
     <div className='fullPage'>

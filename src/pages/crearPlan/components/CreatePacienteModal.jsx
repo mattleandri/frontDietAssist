@@ -20,8 +20,6 @@ export default function CreatePacienteModal({name,setShowModal,confirm}) {
 
     })
 
-    console.log(formState)
-
     // TODO: Crear validaciones con msj individuales
     const validate = () => {
         let result = true

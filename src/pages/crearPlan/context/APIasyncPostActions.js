@@ -2,7 +2,6 @@
 export const updateMealGoalDB = async (goals,planId,dayName,mealName) =>{
 
     try{
-        //console.log(goals,planId,dayName,mealName)
         const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/updateMealGoal/${planId}/${dayName}/${mealName}`,{
             method: 'PUT',
             headers: {

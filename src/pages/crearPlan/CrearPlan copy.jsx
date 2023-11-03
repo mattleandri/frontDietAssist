@@ -10,7 +10,6 @@ export function CrearPlan() {
   useEffect(()=>{
     const effectAsync = async()=>{
       const plan = await getPlan()
-      console.log(plan)
     }
     effectAsync()
   })

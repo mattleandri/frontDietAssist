@@ -6,7 +6,6 @@ export async function addDayDB (planId){
         })
 
         const newDay = await result.json()
-        console.log(newDay)
         return newDay
 
     }catch(err){

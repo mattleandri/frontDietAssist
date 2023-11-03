@@ -83,7 +83,6 @@ export function mealReducer(state,{type,payload}){
             }
 
         case 'setMealName':
-            console.log(payload)
             return{
                 ...state,
                 name:payload
