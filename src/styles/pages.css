@@ -24,6 +24,7 @@
 }
 
 .flexH{
+    position: relative;
     display: flex;
     flex-direction: row;
     margin-top: 35px;
@@ -265,7 +266,7 @@
 .dayBarItemInside{
     display: flex;
     align-items: center;
-    position: absolute;
+    position: relative;
 }
 
 .dayName{
@@ -280,7 +281,7 @@
 }
 
 .dayBarTrash{
-    position: relative;
+    position: absolute;
     margin-left: 60px;
     font-size: 12px;
 }
@@ -303,6 +304,10 @@
     align-items: center
     
 }
+.mealTrashButton{
+    position: absolute
+}
+
 .lineaFinMeal{
     margin-top: 4px;
     width: 380px;
@@ -344,15 +349,16 @@
 
 .divPacienteButton{
     position: relative;
+    width: 280px;
 }
 
 .deleteButtonPacientes{
     position: absolute;
-    margin-left: -1270px;
-    margin-top: 2px ;
+    margin-top: 5px;
+    margin-left: 5px;
     font-size: 12px;
     cursor: pointer;
-    z-index: 1
+    z-index: 1000
         
 }
 .deleteButtonPacientes:hover{
@@ -360,6 +366,7 @@
 }
 
 .cardButton{
+    position: relative;
     padding-left: 30px;
     padding-top: 10px;
     display: flex;
