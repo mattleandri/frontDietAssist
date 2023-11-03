@@ -4,6 +4,7 @@ import { Link, Outlet } from "react-router-dom"
 import { useLocation } from "react-router-dom"
 import CreatePacienteModal from "./CreatePacienteModal"
 import { newPatient,deletePatient } from "../api"
+import DeleteModal from "./DeleteModal"
 
 //TODO: Acomodar import para que sea de su api
 
@@ -13,7 +14,8 @@ export function SelectorPacientes(){
   const  selectorPacientesActions = {
     newPatient : async (data) => {  const result =  await newPatient(data) ;
            if(result) setPacientes([...pacientes,result]) ; return result },
-    deletePatient : async (id) => {const result = await deletePatient(id) ; 
+    deletePatient : async (id) => {
+      const result = await deletePatient(id) ; 
             if(result) setPacientes([...pacientes.filter(paciente=> {if(paciente._id!=id) return paciente})])}
   }
 
@@ -21,6 +23,7 @@ export function SelectorPacientes(){
   const [pacientes,setPacientes] = useState([])
   const [seleccionado,setSeleccionado] = useState(false)
   const [showPatientModal,setShowPatientModal] = useState(false)
+  const [showDeletePatientModal,setShowDeletePatientModal] = useState(false)
   const location = useLocation()
 
   useEffect(()=>{
@@ -37,16 +40,15 @@ export function SelectorPacientes(){
   
 
   return (
-    
 
     seleccionado==false?
     <>
       <div className="divSelectorCard">
         { pacientes.map((paciente) =>{return( 
           <div key={paciente._id} className="divPacienteButton">
-            {/* <i className='bx bx-x deleteButtonPacientes' onClick={()=> selectorPacientesActions.deletePatient(paciente._id)} ></i> */}
+            <i className='bx bx-x deleteButtonPacientes' onClick={(e)=> {setShowDeletePatientModal({id:paciente._id,name:paciente.name, surname:paciente.surname}); e.preventDefault}} ></i>
             <Link className="cardButton" to={`./${paciente._id}`} onClick={()=> setSeleccionado(true)}> 
-              <div className="divPacienteInfo">
+              <div className="divPacienteInfo">             
                 <p className="textoNombrePaciente">{`${paciente.name} ${paciente.surname}`}</p>
                 <p className="textoDeportePaciente" >{paciente.sport}</p>
                 <p className="textoOcupacionPaciente" >{paciente.ocupation}</p>
@@ -60,6 +62,8 @@ export function SelectorPacientes(){
       </div>
 
       {showPatientModal && <CreatePacienteModal setShowModal={setShowPatientModal} confirm={selectorPacientesActions.newPatient}/>}
+      {showDeletePatientModal && <DeleteModal name={`el paciente ${showDeletePatientModal.name} ${showDeletePatientModal.surname}  y toda su informacion asocidada`}
+       setShowDeleteModal={setShowDeletePatientModal} confirmDelete={ ()=> selectorPacientesActions.deletePatient(showDeletePatientModal.id)}/>}
     </>:
     <Outlet></Outlet>
     )
