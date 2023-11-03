@@ -16,7 +16,7 @@ import PlanPage from '../pages/crearPlan/components/PlanPage'
  
 const router=createBrowserRouter([
   {
-    path:'/auth',
+    path:'/',
     element:  
       <PublicRouter>
         <Auth/>
