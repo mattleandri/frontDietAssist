@@ -19,7 +19,7 @@ export default function DeleteModal({name,setShowDeleteModal,confirmDelete}) {
     },[])
    
   return (
-    <div className="divFondoDeleteModal">
+    <div className="divFondoModal">
         <div className="divDeleteModal">
             <p>Estas seguro que deseas Eliminar {name} ?</p>
             <div className="DivBotonesDeleteModal">
