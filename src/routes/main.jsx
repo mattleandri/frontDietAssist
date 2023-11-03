@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {createBrowserRouter,RouterProvider} from "react-router-dom"
+import {createBrowserRouter,RouterProvider, Navigate} from "react-router-dom"
 import AuthProvider from './auth/context/AuthProvider'
 
 //Pages and Loaders
@@ -17,6 +17,10 @@ import PlanPage from '../pages/crearPlan/components/PlanPage'
 const router=createBrowserRouter([
   {
     path:'/',
+    element: <Navigate to="/auth" />
+  },
+  {
+    path:'/auth',
     element:  
       <PublicRouter>
         <Auth/>
