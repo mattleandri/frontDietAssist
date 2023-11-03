@@ -8,9 +8,9 @@ export default function DeleteModal({name,setShowDeleteModal,confirmDelete}) {
         setShowDeleteModal(false)
     }
     
-    const hanldeConfirm = (name)=>{
+    const hanldeConfirm = ()=>{
         setShowDeleteModal(false) 
-        confirmDelete(name)
+        confirmDelete()
         document.body.classList.remove('no-scroll');
     } 
 
@@ -21,10 +21,10 @@ export default function DeleteModal({name,setShowDeleteModal,confirmDelete}) {
   return (
     <div className="divFondoModal">
         <div className="divDeleteModal">
-            <p>Estas seguro que deseas Eliminar {name} ?</p>
+            <p>Estas seguro que deseas ELIMINAR {name} ?</p>
             <div className="DivBotonesDeleteModal">
                 <button  onClick={ () => handleCancel() } className="button">Cancelar</button>
-                <button  onClick={ () => hanldeConfirm(name)} className="button deleteButton">Confirmar</button>
+                <button  onClick={ () => hanldeConfirm()} className="button deleteButton">Confirmar</button>
             </div>
         </div>
     </div>
