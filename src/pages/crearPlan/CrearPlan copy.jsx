@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import '../../styles/pages.css'
+//import '../../styles/pages.css'
 import {DayPage,NavBarDay} from './components'
 import PlanProvider from './context/PlanProvider'
 import { Outlet } from 'react-router-dom'

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/auth.css';
+//import '../../styles/auth.css';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 
