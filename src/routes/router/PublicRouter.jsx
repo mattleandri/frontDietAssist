@@ -9,5 +9,6 @@ export function PublicRouter({children}) {
     if(authContext.auth.logged!=true)
     return (children)
 
-    return <Navigate to='/panel'/>
+    //TODO: crear Panel y navegar solo a /panel
+    return <Navigate to='/panel/crearPlan'/>
 }
