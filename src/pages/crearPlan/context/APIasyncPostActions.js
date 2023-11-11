@@ -2,9 +2,11 @@
 export const updateMealGoalDB = async (goals,planId,dayName,mealName) =>{
 
     try{
+        const token = localStorage.getItem('accesToken')
         const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/updateMealGoal/${planId}/${dayName}/${mealName}`,{
             method: 'PUT',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(goals)
@@ -25,10 +27,11 @@ export const updateMealGoalDB = async (goals,planId,dayName,mealName) =>{
 export const setMealNameDB = async (newMealName,planId,dayName,mealName) => {
 
     try{
-        //console.log(goals,planId,dayName,mealName)
+        const token = localStorage.getItem('accesToken')
         const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/updateMealName/${planId}/${dayName}/${mealName}`,{
             method: 'PUT',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({newMealName})
@@ -51,11 +54,11 @@ export const setMealNameDB = async (newMealName,planId,dayName,mealName) => {
 export const addMealDB = async (mealNameClicked,planId,dayName)=> {
 
     try{
-        console.log(mealNameClicked)
-
+        const token = localStorage.getItem('accesToken')
         const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/addMeal/${planId}/${dayName}`,{
             method: 'PUT',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({mealNameClicked})
@@ -76,9 +79,12 @@ export const addMealDB = async (mealNameClicked,planId,dayName)=> {
 export const deleteMealDB = async (planId,dayName,mealName) =>{
 
     try{
-
+        const token = localStorage.getItem('accesToken')
         const response  = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/deleteMeal/${planId}/${dayName}/${mealName}`,{
             method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+        },
         })
 
         if(!response.ok) throw new Error (msg)

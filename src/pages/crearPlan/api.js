@@ -4,7 +4,12 @@ export async function getPlan (id) {
     //TODO: Agregar que se le envie como query param la id del plan
 
     try{
-        const response = await  fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/getPlan/${id}`)
+        const token = localStorage.getItem('accesToken')
+        const response = await  fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/getPlan/${id}`,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+        },
+    })
         if(!response.ok) throw new Error(response.status)
 
         const data = await response.json()
@@ -20,8 +25,12 @@ export async function getPlan (id) {
 
 export async function getAlimentos(foodName){
     try{
-
-        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/getAlimentos?foodName=${foodName}`)
+        const token = localStorage.getItem('accesToken')
+        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/getAlimentos?foodName=${foodName}`,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+        },
+    })
         if(!response.ok) throw new Error(response.status)
 
         const data = await response.json()
@@ -40,7 +49,12 @@ export async function getAlimentos(foodName){
 export async function getAlimentosById(id){
 
     try{
-        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/getAlimentosById/${id}`)
+        const token = localStorage.getItem('accesToken')
+        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/getAlimentosById/${id}`,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+        },
+    })
         if(!response.ok) throw new Error (response.status)
 
         const alimento = await response.json()
@@ -53,6 +67,7 @@ export async function getAlimentosById(id){
 
 }
 
+//dont need Token.. is for nutriAlgorithmApi
 export async function calculateMacros(foods){
 
     try{
@@ -80,9 +95,15 @@ export async function calculateMacros(foods){
 
 
 export async function getPlanNames(patientId){
+    
 
     try{
-        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/getPlansNames/${patientId}`)
+        const token = localStorage.getItem('accesToken')
+        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/CreatePlan/getPlansNames/${patientId}`,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+        },
+    })
 
         if(!response.ok) throw new Error(response.status)
 
@@ -98,9 +119,14 @@ export async function getPlanNames(patientId){
 
 
 export async function getDay (planId,dayName){
+    const token = localStorage.getItem('accesToken')
 
     try{
-        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/getPlan/${planId}/${dayName}`)
+        const response = await fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/getPlan/${planId}/${dayName}`,{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+            },
+        })
 
         if(!response.ok) throw new Error (response.status)
 
@@ -119,9 +145,9 @@ export async function getDay (planId,dayName){
 
 export async function newPatient(patientData){
 
-    const token = localStorage.getItem('accesToken')
-  
+
       try{
+        const token = localStorage.getItem('accesToken')
         const resp = await fetch(`${import.meta.env.VITE_MAINAPI}/patients/newPatient`,{
             method:'POST',
             headers: {
@@ -171,9 +197,8 @@ export async function deletePatient(patientId){
 
 export async function newPlan(planData){
 
-    const token = localStorage.getItem('accesToken')
-
       try{
+        const token = localStorage.getItem('accesToken')
         const resp = await fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/newPlan`,{
             method:'POST',
             headers: {
@@ -205,10 +230,12 @@ export async function newPlan(planData){
 export async function putSelectedFoods(planId,dayName,mealName,foods){
 
     try{
+        const token = localStorage.getItem('accesToken')
         if(!foods) throw new Error('No se enviaron alimentos')
         const response = fetch(`${import.meta.env.VITE_MAINAPI}/createPlan/updateFoods/${planId}/${dayName}/${mealName}`,{
             method: 'PUT',
             headers:{
+                'Authorization': `Bearer ${token}`,
                 'Content-Type':'application/json'
             },
             body: JSON.stringify(foods)
