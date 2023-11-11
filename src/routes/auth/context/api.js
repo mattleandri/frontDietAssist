@@ -25,3 +25,23 @@ export async function loginVerif (user,pass,navigate){
         return false
     }
 }
+
+
+export async function signUpVerif (username,password,name,surname){
+
+    const response = await fetch(`${import.meta.env.VITE_MAINAPI}/auth/signUp`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify({
+            'username':username,
+            'password':password,
+            'name' : name,
+            'surname' : surname
+        })
+    })
+    
+    return response
+
+}
