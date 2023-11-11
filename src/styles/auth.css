@@ -7,6 +7,16 @@
     
 }
 
+.img{
+    height: 90vh;
+}
+
+.portfolioImgPos{
+    margin-left: -180px;
+}
+
+
+
 
 .sigInContainer{
     display:flex;
@@ -98,4 +108,13 @@
 .bx{
     position: absolute;
     left: 90%;
+}
+
+
+.clickeable{
+    cursor: pointer;
+}
+
+.subrayado{
+    text-decoration: underline;
 }
