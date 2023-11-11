@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react"
+import { AuthContext } from "../auth/context/AuthContext"
+import { useEffect, useRefm , useContext } from "react"
 import { Link, Outlet, useLocation } from "react-router-dom"
 //import '../../styles/panel.css';
 
@@ -18,8 +19,7 @@ export function Panel() {
 
     // },[])
     const location=useLocation()
-    
-    const inputRef =useRef(null)
+    const {logout} = useContext(AuthContext)
 
     const focusInput = ()=>{
         inputRef.curent.focus()
@@ -32,7 +32,7 @@ export function Panel() {
     <>
       <div className="header">
         <div className="log-items">
-            <a href="/">Log-Out</a>
+            <Link reloadDocument={true} onClick={() => {localStorage.removeItem('accesToken') ; logout() }} to="/auth">Log-Out</Link>
         </div>
         </div>
         <div className="flex-container">
