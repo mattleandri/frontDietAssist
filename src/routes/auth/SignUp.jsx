@@ -38,10 +38,11 @@ export default function SignUp({setHasAccount}) {
               <input onChange={onInputChange}  className='passInput' placeholder='name' name="name"></input> 
 
           </div>
+          <div className="optionsDiv container"></div>
           <div className="loginDiv container ">
               <button onClick={()=>{signup({username,password,password2,surname,name})}} className='loginBtn' >Registrarse</button>
           </div>
-          <div className="footer container">
+          <div className="footer container mt-40">
             <span >
                 <p className='optionRegistro'>Ya tienes cuenta? <p className="clickeable subrayado" onClick={()=>setHasAccount(true)}>Iniciar Sesion</p> </p> 
             </span>
