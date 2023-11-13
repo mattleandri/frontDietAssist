@@ -110,6 +110,10 @@
     left: 90%;
 }
 
+.mt-40{
+    margin-top: -40px;
+}
+
 
 .clickeable{
     cursor: pointer;
