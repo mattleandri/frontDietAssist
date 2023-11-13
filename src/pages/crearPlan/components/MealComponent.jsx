@@ -62,9 +62,9 @@ export function MealComponent({addMealFunction,deleteMealFunction}) {
                 <TituloEditable name={name} setName={setMealName} clase={'textNombrePlato'} />
                   {/* <div className="divButtonAuto">
                       <p className='autoText'>Auto</p>
-                      <button onClick={()=>changeMode()} className={`checkBtn ${plan.autoCalculate?"checked":""}`}></button>
-                      <i onClick={()=>deleteMealFunction(name)} className='bx bx-x mealTrashButton'></i>
+                      <button onClick={()=>changeMode()} className={`checkBtn ${plan.autoCalculate?"checked":""}`}></button>        
                   </div> */}
+                  <i onClick={()=>deleteMealFunction(name)} className='bx bx-x mealTrashButton'></i>
                 </div>
                 {/* construir Componente */}
                 <Macros macros={goal?goal:{p:0,c:0,f:0,kcal:0}}  disable={false} />
