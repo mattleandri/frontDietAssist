@@ -7,17 +7,7 @@ export default function CreatePlanModal({name,setShowModal,confirm}) {
 
     //TODO: Banderas en tiempo de escritura verificando si no existe ya el DNI
 
-    const {formState,onInputChange} = useForm({
-        
-        name:'Mes2',
-        kcal:3300,
-        p:140,
-        c:452,
-        f:70,
-        days:6,
-        meals:4, //comidas por dia
-        description:'Mi nuevo Plan'
-    })
+    const {formState,onInputChange} = useForm()
 
     // TODO: Crear validaciones con msj individuales
     const validate = () => {
@@ -61,7 +51,7 @@ export default function CreatePlanModal({name,setShowModal,confirm}) {
                 <div className="divOpcLinea">
                     <div className="divTextOpcPaciente">
                         <p>Nombre</p>
-                        <input name="name" onChange={ e=> onInputChange(e,null,null)} className="inputTextOpcPaciente" type="text" value={formState.name} />
+                        <input name="name" onChange={ e=> onInputChange(e,null,null)} placeholder="" className="inputTextOpcPaciente" type="text" value={formState.name} />
                     </div>   
                 </div>
                 <div className="divOpcLinea ">
@@ -70,7 +60,7 @@ export default function CreatePlanModal({name,setShowModal,confirm}) {
                 <div className="divOpcLinea">
                     <div className="divTextOpcPaciente">
                         <p>Kcal</p>
-                        <input name="kcal" onChange={ e=> onInputChange(e,'positiveNumber',null)} placeholder="g" className="inputLittleNumberOpcPaciente" type="text" value={formState.kcal} />
+                        <input name="kcal" onChange={ e=> onInputChange(e,'positiveNumber',null)} placeholder="" className="inputLittleNumberOpcPaciente" type="text" value={formState.kcal} />
                     </div>    
                     <div className="divTextOpcPaciente">
                         <p>P</p>
@@ -92,7 +82,7 @@ export default function CreatePlanModal({name,setShowModal,confirm}) {
                 <div className="divOpcLinea mt70">
                     <div className="divTextOpcPaciente">
                         <p>Descripcion</p>
-                        <input name="description" onChange={ e=> onInputChange(e,null,null)} className="inputTextLongOpcPaciente" type="text" value={formState.description} spellCheck={false}/>
+                        <input name="description" onChange={ e=> onInputChange(e,null,null)} placeholder="" className="inputTextLongOpcPaciente" type="text" value={formState.description} spellCheck={false}/>
                     </div>    
                 </div>
                   

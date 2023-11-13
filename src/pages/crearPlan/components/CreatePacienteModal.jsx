@@ -7,8 +7,8 @@ export default function CreatePacienteModal({name,setShowModal,confirm}) {
 
     const {formState,onInputChange} = useForm({
         
-        name:'a',
-        surname:'b',
+        name:'',
+        surname:'',
         dni:'',
         sex:'',
         age:'',
@@ -54,7 +54,9 @@ export default function CreatePacienteModal({name,setShowModal,confirm}) {
     useEffect(()=>{
         document.body.classList.add('no-scroll');
     },[])
-   
+
+    
+    //TODO: Validaciones en general y opciones para sexo
   return (
     <div className="divFondoModal">
         <div className="divPacienteModal">
@@ -76,8 +78,8 @@ export default function CreatePacienteModal({name,setShowModal,confirm}) {
                 </div>
                 <div className="divOpcLinea">
                     <div className="divTextOpcPaciente">
-                        <p>Sexo</p>
-                        <input name="sex" onChange={ e=> onInputChange(e,null,null)} placeholder="do select" className="inputNumberOpcPaciente" type="text" value={formState.sex} />
+                        <p>Sexo</p> 
+                        <input name="sex" onChange={ e=> onInputChange(e,null,null)} placeholder="masc / fem" className="inputTextOpcPaciente" type="text" value={formState.sex} />
                     </div>    
                     <div className="divTextOpcPaciente">
                         <p>Edad</p>
