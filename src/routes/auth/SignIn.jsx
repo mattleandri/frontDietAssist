@@ -27,8 +27,8 @@ export default function SignIn({setHasAccount}) {
               <i className='bx bxs-lock-alt' ></i>
           </div>
           <div className="optionsDiv container">
-              <p className='optionRecordar' >Recordarme</p>
-              <button type='checkbox' className='check'></button>
+              {/* <p className='optionRecordar' >Recordarme</p>
+              <button type='checkbox' className='check'></button> */}
           </div>
           <div className="loginDiv container ">
               <button onClick={()=>{login(username,password,navigate)}} className='loginBtn' >Iniciar Sesion</button>
