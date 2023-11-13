@@ -60,11 +60,11 @@ export function MealComponent({addMealFunction,deleteMealFunction}) {
             <div className='flexV'>
                 <div className="divNombrePlato">
                 <TituloEditable name={name} setName={setMealName} clase={'textNombrePlato'} />
-                  <div className="divButtonAuto">
+                  {/* <div className="divButtonAuto">
                       <p className='autoText'>Auto</p>
                       <button onClick={()=>changeMode()} className={`checkBtn ${plan.autoCalculate?"checked":""}`}></button>
                       <i onClick={()=>deleteMealFunction(name)} className='bx bx-x mealTrashButton'></i>
-                  </div>
+                  </div> */}
                 </div>
                 {/* construir Componente */}
                 <Macros macros={goal?goal:{p:0,c:0,f:0,kcal:0}}  disable={false} />
