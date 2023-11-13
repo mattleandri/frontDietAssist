@@ -36,7 +36,8 @@ export default function PlanPage() {
   useEffect(()=>{
     if(plan){
       const lastDay = localStorage.getItem('lastDay')
-      navigate(lastDay? `./${lastDay}` : `./${plan.days[0].name}`) //TODO: Para que se muestre el ultimo dia creado. A mejorar luego CAMBIAR CUANTO ANTES a localStorage. ultimo mod
+     // navigate(lastDay? `./${lastDay}` : `./${plan.days[0].name}`) //TODO: Solucionar bug. Last Day debe depender tmb del plan en analisis
+     navigate(`./${plan.days[0].name}`)
     }
   },[plan])
 
