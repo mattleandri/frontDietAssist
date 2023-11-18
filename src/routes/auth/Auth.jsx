@@ -12,12 +12,12 @@ export function Auth() {
 
   return (
     <div className='fullPage'>
-      <div className="flexV wBG portfolioImgPos">
+      {/* <div className="flexV wBG portfolioImgPos">
       <img src={PORTFOLIO} size alt="..." className='img' />
-      </div>
-      <div className="flexV">
+      </div> */}
+      {/* <div className="flexV"> */}
         {hasAccount? <SignIn setHasAccount={setHasAccount}/> : <SignUp setHasAccount={setHasAccount}/>}
-      </div>
+      {/* </div> */}
     </div>
   )
 }
